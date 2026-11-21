@@ -1,8 +1,8 @@
 /* ============================================================
-   LAY'S — THE CRUNCH · main.js (100% own code)
+   AURELO — THE STATEMENT · main.js (100% own code)
    Lenis smooth scroll + GSAP ScrollTrigger, all vendored.
-   Systems: pack-tear loader · canvas crisp storm (mouse wind) ·
-   count-ups · horizontal flavour runway (desktop) / sticky
+   Systems: curtain-lift loader · canvas look-card storm (mouse wind) ·
+   count-ups · horizontal collection runway (desktop) / sticky
    panels (mobile) · pinned 4-step journey · sticky moment
    stack · scroll-scrubbed finale line with velocity skew.
    ============================================================ */
@@ -12,7 +12,7 @@
   var hasGsap = typeof gsap !== "undefined";
   if (hasGsap && typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-  /* ---------------- loader : pack tear ---------------- */
+  /* ---------------- loader : curtain lift ---------------- */
   var loader = document.getElementById("loader");
   document.body.classList.add("is-loading");
   var loaderDone = false;
@@ -64,7 +64,7 @@
     else window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  /* ---------------- hero intro + crisp storm ---------------- */
+  /* ---------------- hero intro + look-card storm ---------------- */
   var heroPlayed = false;
   function heroIntro() {
     if (heroPlayed) return;
@@ -81,7 +81,7 @@
   /* If GSAP failed to load, hero text must still be visible: it is —
      all initial states are set by GSAP itself (fromTo), never by CSS. */
 
-  (function crispStorm() {
+  (function lookStorm() {
     if (reduced) return;
     var canvas = document.getElementById("crispCanvas");
     if (!canvas) return;
@@ -94,7 +94,7 @@
       im.src = "assets/images/v5/crisps/" + s;
       imgs.push(im);
     });
-    var W, H, chips = [], running = true, mouseX = .5, wind = 0, lastMouseX = null;
+    var W, H, cards = [], running = true, mouseX = .5, wind = 0, lastMouseX = null;
     var COUNT = window.innerWidth < 820 ? 14 : 26;
     function size() {
       var r = canvas.parentElement.getBoundingClientRect();
@@ -117,7 +117,7 @@
       };
     }
     size();
-    for (var i = 0; i < COUNT; i++) { var c = make(); c.y = Math.random() * H; chips.push(c); }
+    for (var i = 0; i < COUNT; i++) { var c = make(); c.y = Math.random() * H; cards.push(c); }
     window.addEventListener("resize", size);
     window.addEventListener("pointermove", function (e) {
       var nx = e.clientX / window.innerWidth;
@@ -132,14 +132,14 @@
       if (!running || loaded === 0) return;
       ctx.clearRect(0, 0, W, H);
       wind *= .94;
-      for (var i = 0; i < chips.length; i++) {
-        var ch = chips[i];
+      for (var i = 0; i < cards.length; i++) {
+        var ch = cards[i];
         ch.sway += ch.swaySpeed;
         ch.y += ch.vy;
         ch.x += Math.sin(ch.sway) * .7 + wind * ch.s + (mouseX - .5) * .35;
         ch.rot += ch.vr;
         var wpx = 150 * ch.s, hpx = wpx * (ch.img.height / ch.img.width || .8);
-        if (ch.y - hpx > H + 40) chips[i] = ch = make(-hpx - 20);
+        if (ch.y - hpx > H + 40) cards[i] = ch = make(-hpx - 20);
         if (ch.x > W + 190) ch.x = -180; if (ch.x < -190) ch.x = W + 180;
         ctx.save();
         ctx.translate(ch.x, ch.y);
@@ -202,7 +202,7 @@
       });
     });
 
-    /* flavours */
+    /* collections */
     var mm = gsap.matchMedia();
     mm.add("(min-width: 821px)", function () {
       var track = document.getElementById("runwayTrack");
