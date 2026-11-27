@@ -262,7 +262,7 @@
      ============================================================ */
   var runwaySection = document.getElementById("runway");
   var runwayStage = document.getElementById("runwayStage");
-  var runwayLooks = runwayStage ? Array.prototype.slice.call(runwayStage.children) : [];
+  var runwayLooks = runwayStage ? Array.prototype.slice.call(runwayStage.querySelectorAll(".runway-look")) : [];
   var runwayName = document.getElementById("runwayName");
   var runwayLine = document.getElementById("runwayLine");
   var runwayFabric = document.getElementById("runwayFabric");
@@ -272,6 +272,21 @@
   var runwayST = null;
   var runwayTarget = -1;
   var runwayFlyTimer = null;
+  var runwaySnapTimer = null;
+
+  /* Snap: a fast scroll can jump the scrub past a look (Teal straight
+     to Red, skipping Skeleton Tee). 140ms after scrolling stops, step
+     to the nearest look through runwayTo — the same tested path as
+     the arrows, via lenis.scrollTo, so it never fights Lenis. Skipped
+     while a programmatic flight is in progress, and skipped when the
+     scrub already sits on a step. */
+  function scheduleRunwaySnap(p) {
+    if (runwayTarget >= 0) return;
+    var idx = Math.round(p * 7);
+    if (Math.abs(p * 7 - idx) < 0.02) return;
+    if (runwaySnapTimer) clearTimeout(runwaySnapTimer);
+    runwaySnapTimer = setTimeout(function () { runwaySnapTimer = null; runwayTo(idx); }, 140);
+  }
 
   /* Synchronous detail update. The old fan updated its detail only
      inside a GSAP callback, and a click interrupting an in-flight
@@ -331,6 +346,7 @@
     } else if (idx !== runwayCentre) {
       setRunwayDetail(idx);
     }
+    scheduleRunwaySnap(p);
   }
   function runwayTo(i) {
     i = ((i % 8) + 8) % 8;
