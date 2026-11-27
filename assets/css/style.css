@@ -154,7 +154,9 @@ h3 {
 .site-nav a:hover { background: var(--lime); }
 .head-actions { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
 .menu-btn {
-  width: 48px; height: 48px; border: none; border-radius: 0; cursor: pointer;
+  /* 48px + 2px border = 52px total, matching the Book Styling
+     button beside it (no global border-box on this page). */
+  width: 48px; height: 48px; border: 2px solid var(--ink); border-radius: 0; cursor: pointer;
   background: var(--lime);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
 }
@@ -315,13 +317,20 @@ h3 {
   pointer-events: none;
 }
 .runway-controls .runway-arrow { pointer-events: auto; }
-.runway-arrow {
+/* One arrow button, used by the runway and the lookbook alike: a
+   lime square, ink border, drawn SVG chevron (never a text glyph —
+   the old ← → characters rendered tiny, thin and off-centre, lost
+   in the square). The icon is currentColor, so hover inverts it
+   with the fill. */
+.runway-arrow, .lookbook-arrow {
   width: 56px; height: 56px; border-radius: 0;
   border: 2px solid var(--ink); background: var(--lime); color: var(--ink);
-  font-size: 24px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0; cursor: pointer;
   transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
 }
-.runway-arrow:hover { background: var(--ink); color: var(--lime); transform: translateY(-2px); }
+.runway-arrow:hover, .lookbook-arrow:hover { background: var(--ink); color: var(--lime); transform: translateY(-2px); }
+.runway-arrow svg, .lookbook-arrow svg { width: 26px; height: 26px; display: block; }
 /* Detail sits above the stage, inside the pinned viewport, as one
    compact block: name, line, then fabric + Enquire on one row. */
 .runway-detail { margin-bottom: 32px; max-width: 68ch; }
@@ -414,7 +423,7 @@ h3 {
 .service h3 { margin-bottom: 24px; }
 .service p { font-size: var(--t-body); line-height: 1.55; max-width: 68ch; }
 .service p + p { margin-top: 16px; }
-.service .btn { margin-top: 32px; }
+.service .btn { margin-top: 32px; justify-self: start; }
 .service--split {
   display: grid; grid-template-columns: 1fr 1.4fr;
   gap: 48px; align-items: start;
@@ -491,13 +500,6 @@ h3 {
   display: flex; gap: 16px; justify-content: center;
   margin-top: 48px;
 }
-.lookbook-arrow {
-  width: 56px; height: 56px; border-radius: 0;
-  border: 2px solid var(--white); background: var(--lime); color: var(--ink);
-  font-size: 24px; cursor: pointer;
-  transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
-}
-.lookbook-arrow:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
 
 /* ---------- size & fit ---------- */
 .size { background: var(--white); }
