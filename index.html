@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23C9F24E'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' text-anchor='middle' fill='%230a0a0a'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/bodoni-moda-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=8">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 <header class="site-head" id="siteHead">
   <a class="logo" href="#top" aria-label="AURELO — back to top">AURELO</a>
   <nav class="site-nav" aria-label="Sections">
-    <a href="#collections">Collections</a>
+    <a href="#runway">Runway</a>
     <a href="#shop">Shop</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -39,11 +39,12 @@
   <div class="pixel-inner">
     <button class="pixel-close" id="pixelClose" type="button" aria-label="Close menu">Close</button>
     <nav class="pixel-nav" aria-label="Menu">
+      <a href="#runway">Runway</a>
       <a href="#shop">Shop</a>
-      <a href="#collections">Collections</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#process">Process</a>
+      <a href="#lookbook">Lookbook</a>
       <a href="#contact">Contact</a>
     </nav>
     <p class="pixel-note">AURELO is a fashion house, open since 2019.</p>
@@ -52,7 +53,7 @@
 
 <main id="top">
 
-  <!-- 1 · HERO — scattered photos (hero-22) -->
+  <!-- 1 · HERO — runway line-up: ghost wordmark, eight looks walking in a row, shrinking into the distance -->
   <section class="hero" id="hero">
     <div class="wrap hero-copy">
       <h1 class="hero-title">
@@ -60,32 +61,22 @@
         <span class="mask-line"><span class="mask-inner">statement.</span></span>
       </h1>
       <p class="hero-sub">AURELO is a fashion house, open since 2019. Eight looks, cut in the studio and made to order.</p>
-      <p class="hero-slogan">Cut bold. Sewn honest. Worn loud.</p>
       <div class="hero-ctas">
         <a class="btn btn--lime" href="#shop">Shop the collection</a>
       </div>
     </div>
-    <div class="hero-scatter" id="heroScatter" aria-label="The eight looks, scattered">
-      <button class="scatter-photo sp-1" type="button" data-look-i="0" data-depth="0.6" aria-label="Burgundy Coat — tap to view full size"><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat: wine-red wool coat, high collar, leather gloves"></button>
-      <button class="scatter-photo sp-2" type="button" data-look-i="1" data-depth="1" aria-label="Pinstripe Trousers — tap to view full size"><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers: black pinstripe wide legs, white off-shoulder crop, red shades"></button>
-      <button class="scatter-photo sp-3" type="button" data-look-i="2" data-depth="0.8" aria-label="Yellow Tracksuit — tap to view full size"><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit: sun-yellow fleece, cropped hoodie, drawstring joggers"></button>
-      <button class="scatter-photo sp-4" type="button" data-look-i="3" data-depth="1.2" aria-label="Teal Satin Jumpsuit — tap to view full size"><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit: teal satin halter, deep V, wide waistband"></button>
-      <button class="scatter-photo sp-5" type="button" data-look-i="4" data-depth="0.7" aria-label="Skeleton Tee — tap to view full size"><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee: black tee with a white skeleton hand print, light ripped denim"></button>
-      <button class="scatter-photo sp-6" type="button" data-look-i="5" data-depth="1" aria-label="Red Tee, Black Jacket — tap to view full size"><img src="assets/images/v5/street-worn.jpg" alt="Red Tee, Black Jacket: red lettered tee under a black jacket, daisy shades"></button>
-      <button class="scatter-photo sp-7" type="button" data-look-i="6" data-depth="0.9" aria-label="Neutral Knits — tap to view full size"><img src="assets/images/v5/field.jpg" alt="Neutral Knits: cream cable knit, beige and rust layers on the rail"></button>
-      <button class="scatter-photo sp-8" type="button" data-look-i="7" data-depth="1.1" aria-label="Stripes and Dresses — tap to view full size"><img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses: striped tops, floral dresses and folded denim in the shop"></button>
+    <div class="hero-walk" id="heroWalk" aria-label="The eight looks, walking in a line">
+      <p class="hero-ghost" aria-hidden="true">AURELO</p>
+      <button class="walk-fig wf-1" type="button" data-look-i="0" aria-label="Burgundy Coat — walk the runway"><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat: wine-red wool coat, high collar, leather gloves"><span class="walk-name">Burgundy Coat</span></button>
+      <button class="walk-fig wf-2" type="button" data-look-i="1" aria-label="Pinstripe Trousers — walk the runway"><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers: black pinstripe wide legs, white off-shoulder crop, red shades"><span class="walk-name">Pinstripe Trousers</span></button>
+      <button class="walk-fig wf-3" type="button" data-look-i="2" aria-label="Yellow Tracksuit — walk the runway"><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit: sun-yellow fleece, cropped hoodie, drawstring joggers"><span class="walk-name">Yellow Tracksuit</span></button>
+      <button class="walk-fig wf-4" type="button" data-look-i="3" aria-label="Teal Satin Jumpsuit — walk the runway"><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit: teal satin halter, deep V, wide waistband"><span class="walk-name">Teal Satin Jumpsuit</span></button>
+      <button class="walk-fig wf-5" type="button" data-look-i="4" aria-label="Skeleton Tee — walk the runway"><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee: black tee with a white skeleton hand print, light ripped denim"><span class="walk-name">Skeleton Tee</span></button>
+      <button class="walk-fig wf-6" type="button" data-look-i="5" aria-label="Red Tee Black Jacket — walk the runway"><img src="assets/images/v5/street-worn.jpg" alt="Red Tee Black Jacket: red lettered tee under a black jacket, daisy shades"><span class="walk-name">Red Tee Black Jacket</span></button>
+      <button class="walk-fig wf-7" type="button" data-look-i="6" aria-label="Neutral Knits — walk the runway"><img src="assets/images/v5/field.jpg" alt="Neutral Knits: cream cable knit, beige and rust layers on the rail"><span class="walk-name">Neutral Knits</span></button>
+      <button class="walk-fig wf-8" type="button" data-look-i="7" aria-label="Stripes and Dresses — walk the runway"><img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses: striped tops, floral dresses and folded denim in the shop"><span class="walk-name">Stripes and Dresses</span></button>
     </div>
   </section>
-
-  <!-- Hero zoom overlay -->
-  <div class="hero-zoom" id="heroZoom" hidden role="dialog" aria-modal="true" aria-labelledby="heroZoomName">
-    <img id="heroZoomImg" src="assets/images/v5/balloons.jpg" alt="">
-    <div class="hero-zoom-cap">
-      <h2 id="heroZoomName">Burgundy Coat</h2>
-      <p id="heroZoomLine">Wine-red wool coat, high collar, leather gloves, bags in both hands.</p>
-    </div>
-    <button class="hero-zoom-close" id="heroZoomClose" type="button" aria-label="Close full-size photo">Close</button>
-  </div>
 
   <!-- Marquee ribbon -->
   <div class="ribbon" aria-hidden="true">
@@ -101,141 +92,73 @@
     </div>
   </div>
 
-  <!-- 3 · COLLECTIONS — arc fan (sliders-18) -->
-  <section class="collections" id="collections">
-    <div class="wrap">
+  <!-- 2 · RUNWAY — scroll-driven walk: the centre look steps forward, the rest recede -->
+  <section class="runway" id="runway">
+    <div class="wrap runway-pin" id="runwayPin">
       <h2 class="sec-title">
-        <span class="mask-line"><span class="mask-inner" data-reveal>Eight looks</span></span>
-        <span class="mask-line"><span class="mask-inner" data-reveal>on one rail.</span></span>
+        <span class="mask-line"><span class="mask-inner" data-reveal>The runway,</span></span>
+        <span class="mask-line"><span class="mask-inner" data-reveal>walked.</span></span>
       </h2>
-      <p class="sec-intro" data-rise>Drag the fan, use the arrows, or press the left and right keys. It turns endlessly. The look in the middle is the one in front of you.</p>
-      <div class="fan" id="fan" tabindex="0" role="region" aria-label="Collection fan — drag, use the arrows, or press the left and right keys">
-        <div class="fan-stage" id="fanStage">
-          <article class="fan-card" data-i="0"><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat" draggable="false"><p class="fan-card-cap">Burgundy Coat</p></article>
-          <article class="fan-card" data-i="1"><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers" draggable="false"><p class="fan-card-cap">Pinstripe Trousers</p></article>
-          <article class="fan-card" data-i="2"><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit" draggable="false"><p class="fan-card-cap">Yellow Tracksuit</p></article>
-          <article class="fan-card" data-i="3"><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit" draggable="false"><p class="fan-card-cap">Teal Satin Jumpsuit</p></article>
-          <article class="fan-card" data-i="4"><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee" draggable="false"><p class="fan-card-cap">Skeleton Tee</p></article>
-          <article class="fan-card" data-i="5"><img src="assets/images/v5/street-worn.jpg" alt="Red Tee, Black Jacket" draggable="false"><p class="fan-card-cap">Red Tee, Black Jacket</p></article>
-          <article class="fan-card" data-i="6"><img src="assets/images/v5/field.jpg" alt="Neutral Knits" draggable="false"><p class="fan-card-cap">Neutral Knits</p></article>
-          <article class="fan-card" data-i="7"><img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses" draggable="false"><p class="fan-card-cap">Stripes &amp; Dresses</p></article>
-        </div>
-        <div class="fan-controls">
-          <button class="fan-arrow" id="fanPrev" type="button" aria-label="Previous look">←</button>
-          <button class="fan-arrow" id="fanNext" type="button" aria-label="Next look">→</button>
-        </div>
+      <p class="sec-intro" data-rise>Scroll and the line walks. The look in the middle steps forward — the rest fall back into line. Drag it, use the arrows, or press the left and right keys.</p>
+      <div class="runway-stage" id="runwayStage" tabindex="0" role="region" aria-label="Runway — scroll, drag, use the arrows, or press the left and right keys">
+        <article class="runway-look" data-i="0"><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat" draggable="false"><p class="runway-cap"><strong>Burgundy Coat</strong><span>Wine-red wool coat, high collar, leather gloves, bags in both hands.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Burgundy Coat">Enquire</button></article>
+        <article class="runway-look" data-i="1"><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers" draggable="false"><p class="runway-cap"><strong>Pinstripe Trousers</strong><span>Black pinstripe wide legs, a white off-shoulder crop, red shades.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Pinstripe Trousers">Enquire</button></article>
+        <article class="runway-look" data-i="2"><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit" draggable="false"><p class="runway-cap"><strong>Yellow Tracksuit</strong><span>Sun-yellow fleece, cropped hoodie, drawstring joggers, courtside.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Yellow Tracksuit">Enquire</button></article>
+        <article class="runway-look" data-i="3"><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit" draggable="false"><p class="runway-cap"><strong>Teal Satin Jumpsuit</strong><span>Teal satin halter, deep V, wide waistband, hands in pockets.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Teal Satin Jumpsuit">Enquire</button></article>
+        <article class="runway-look" data-i="4"><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee" draggable="false"><p class="runway-cap"><strong>Skeleton Tee</strong><span>Black tee with a white skeleton hand print, light ripped denim.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Skeleton Tee">Enquire</button></article>
+        <article class="runway-look" data-i="5"><img src="assets/images/v5/street-worn.jpg" alt="Red Tee Black Jacket" draggable="false"><p class="runway-cap"><strong>Red Tee Black Jacket</strong><span>Red lettered tee under a black jacket, daisy shades, blue sky.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Red Tee Black Jacket">Enquire</button></article>
+        <article class="runway-look" data-i="6"><img src="assets/images/v5/field.jpg" alt="Neutral Knits" draggable="false"><p class="runway-cap"><strong>Neutral Knits</strong><span>Cream cable knit, beige and rust layers, straight off the rail.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Neutral Knits">Enquire</button></article>
+        <article class="runway-look" data-i="7"><img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses" draggable="false"><p class="runway-cap"><strong>Stripes and Dresses</strong><span>Striped tops, floral dresses and folded denim, hung in the shop.</span></p><button class="btn btn--ink runway-enquire" type="button" data-look="Stripes and Dresses">Enquire</button></article>
       </div>
-      <div class="fan-detail" data-rise>
-        <h3 id="fanName">Burgundy Coat</h3>
-        <p id="fanLine">Wine-red wool coat, high collar, leather gloves, bags in both hands.</p>
-        <p class="fan-fabric" id="fanFabric">Wool coat, high collar.</p>
-        <button class="btn btn--lime" id="fanEnquire" type="button" data-look="Burgundy Coat">Enquire</button>
+      <div class="runway-controls">
+        <button class="runway-arrow" id="runwayPrev" type="button" aria-label="Previous look">←</button>
+        <button class="runway-arrow" id="runwayNext" type="button" aria-label="Next look">→</button>
+      </div>
+      <div class="runway-detail" data-rise>
+        <h3 id="runwayName">Burgundy Coat</h3>
+        <p id="runwayLine">Wine-red wool coat, high collar, leather gloves, bags in both hands.</p>
+        <p class="runway-fabric" id="runwayFabric">Wool coat, high collar.</p>
+        <button class="btn btn--lime" id="runwayEnquire" type="button" data-look="Burgundy Coat">Enquire</button>
       </div>
     </div>
   </section>
 
-  <!-- 4 · SHOP — column accordion (grid-3) -->
+  <!-- 3 · SHOP — boutique rail: eight looks hanging from one rail line -->
   <section class="shop" id="shop">
     <div class="wrap">
       <h2 class="sec-title">
-        <span class="mask-line"><span class="mask-inner" data-reveal>Shop the</span></span>
-        <span class="mask-line"><span class="mask-inner" data-reveal>collection.</span></span>
+        <span class="mask-line"><span class="mask-inner" data-reveal>Eight looks,</span></span>
+        <span class="mask-line"><span class="mask-inner" data-reveal>hung in order.</span></span>
       </h2>
-      <p class="sec-intro" data-rise>Eight columns, one look each. Open a column to see the fit note and the sizes. Prices on enquiry.</p>
-      <div class="shop-acc" id="shopAcc">
-        <article class="acc-col is-open" data-i="0">
-          <button class="acc-strip" type="button" aria-expanded="true"><span>Burgundy Coat</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat" loading="lazy">
-            <h3>Burgundy Coat</h3>
-            <p>Sharp through the shoulder. Size up to layer a knit under it.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Burgundy Coat">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="1">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Pinstripe Trousers</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers" loading="lazy">
-            <h3>Pinstripe Trousers</h3>
-            <p>Wide leg, high waist. The crop top sits above the waistband.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Pinstripe Trousers">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="2">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Yellow Tracksuit</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit" loading="lazy">
-            <h3>Yellow Tracksuit</h3>
-            <p>Relaxed fleece throughout. The hoodie is cropped; the joggers sit on the waist.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Yellow Tracksuit">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="3">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Teal Satin Jumpsuit</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit" loading="lazy">
-            <h3>Teal Satin Jumpsuit</h3>
-            <p>Fitted through the bodice, straight through the leg. The waistband does the shaping.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Teal Satin Jumpsuit">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="4">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Skeleton Tee</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee" loading="lazy">
-            <h3>Skeleton Tee</h3>
-            <p>Boxy tee, straight through the body. The denim is a straight leg with a ripped knee.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Skeleton Tee">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="5">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Red Tee, Black Jacket</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/street-worn.jpg" alt="Red Tee, Black Jacket" loading="lazy">
-            <h3>Red Tee, Black Jacket</h3>
-            <p>The tee is a regular fit; the jacket is cut loose over it.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Red Tee, Black Jacket">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="6">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Neutral Knits</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/field.jpg" alt="Neutral Knits" loading="lazy">
-            <h3>Neutral Knits</h3>
-            <p>Easy, layering knits. The cable knit is the heaviest piece on the rail.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Neutral Knits">Enquire</button>
-          </div>
-        </article>
-        <article class="acc-col" data-i="7">
-          <button class="acc-strip" type="button" aria-expanded="false"><span>Stripes &amp; Dresses</span></button>
-          <div class="acc-body">
-            <img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses" loading="lazy">
-            <h3>Stripes &amp; Dresses</h3>
-            <p>Each piece is cut to its own shape; the rail mixes fitted dresses and easy stripes.</p>
-            <p class="acc-sizes">Sizes XS – XL</p>
-            <button class="btn btn--ink acc-enquire" type="button" data-look="Stripes &amp; Dresses">Enquire</button>
-          </div>
-        </article>
+      <p class="sec-intro" data-rise>One rail, eight garments. Tap a hanging look to see the fit note and the sizes. Prices on enquiry.</p>
+      <div class="shop-rail" id="shopRail">
+        <div class="rail-line" aria-hidden="true"></div>
+        <div class="rail-list" id="railList" role="list">
+          <button class="rail-item is-active" type="button" role="listitem" data-i="0" aria-expanded="true"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat" loading="lazy"><span class="rail-name">Burgundy Coat</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="1" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers" loading="lazy"><span class="rail-name">Pinstripe Trousers</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="2" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit" loading="lazy"><span class="rail-name">Yellow Tracksuit</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="3" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit" loading="lazy"><span class="rail-name">Teal Satin Jumpsuit</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="4" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee" loading="lazy"><span class="rail-name">Skeleton Tee</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="5" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/street-worn.jpg" alt="Red Tee Black Jacket" loading="lazy"><span class="rail-name">Red Tee Black Jacket</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="6" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/field.jpg" alt="Neutral Knits" loading="lazy"><span class="rail-name">Neutral Knits</span></button>
+          <button class="rail-item" type="button" role="listitem" data-i="7" aria-expanded="false"><span class="rail-hook" aria-hidden="true"></span><img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses" loading="lazy"><span class="rail-name">Stripes and Dresses</span></button>
+        </div>
+      </div>
+      <div class="rail-detail" data-rise>
+        <h3 id="railName">Burgundy Coat</h3>
+        <p id="railFit">Sharp through the shoulder. Size up to layer a knit under it.</p>
+        <p class="rail-sizes">Sizes XS – XL</p>
+        <button class="btn btn--ink" id="railEnquire" type="button" data-look="Burgundy Coat">Enquire</button>
       </div>
     </div>
   </section>
 
-  <!-- 7 · ABOUT — block-swipe headline (text-15) -->
+  <!-- 4 · ABOUT -->
   <section class="about" id="about">
     <div class="wrap">
-      <h2 class="sec-title about-title">
-        <span class="swipe-word">A</span>
-        <span class="swipe-word">two-rail</span>
-        <span class="swipe-word">studio,</span>
-        <span class="swipe-word">since</span>
-        <span class="swipe-word">2019.</span>
+      <h2 class="sec-title">
+        <span class="mask-line"><span class="mask-inner" data-reveal>A two-rail studio,</span></span>
+        <span class="mask-line"><span class="mask-inner" data-reveal>since 2019.</span></span>
       </h2>
       <div class="about-grid">
         <p class="about-text" data-rise>AURELO started in 2019 as a two-rail studio with one rule: never blend in. The rail holds the whole collection — every look hangs where it was cut, and nothing leaves it until it is ready to be worn.</p>
@@ -258,7 +181,7 @@
     </div>
   </section>
 
-  <!-- SERVICES — four different compositions, no identical cards -->
+  <!-- 5 · SERVICES — four different compositions, no identical cards -->
   <section class="services" id="services">
     <div class="wrap">
       <h2 class="sec-title">
@@ -306,110 +229,77 @@
     </div>
   </section>
 
-  <!-- 5 · PROCESS — scroll fan (scroll-18) -->
+  <!-- 6 · PROCESS — the walk from first talk to first wear -->
   <section class="process" id="process">
     <div class="wrap">
       <h2 class="sec-title sec-title--light">
         <span class="mask-line"><span class="mask-inner" data-reveal>From first talk</span></span>
         <span class="mask-line"><span class="mask-inner" data-reveal>to first wear.</span></span>
       </h2>
-      <p class="sec-intro sec-intro--light" data-rise>Four steps, one rail. Scroll and each step sweeps past; the name at the top changes as the next one arrives.</p>
-      <div class="process-pin" id="processPin">
-        <p class="process-title" id="processTitle" aria-live="polite">Consultation</p>
-        <div class="process-stage" id="processStage">
-          <article class="step-card" data-step="0">
-            <h3>Consultation</h3>
-            <p>You talk, the studio listens: the look, the fit, the occasion, and what the piece has to do.</p>
-          </article>
-          <article class="step-card" data-step="1">
-            <h3>Fitting</h3>
-            <p>The piece is tried on you, pinned where it needs to sit, and marked before a single seam is sewn.</p>
-          </article>
-          <article class="step-card" data-step="2">
-            <h3>Making</h3>
-            <p>Cut and sewn in the studio, seam by seam, until it holds the shape it was drawn for.</p>
-          </article>
-          <article class="step-card" data-step="3">
-            <h3>Delivery</h3>
-            <p>Handed over ready to wear, with the fit checked one last time before it leaves the rail.</p>
-          </article>
-        </div>
+      <p class="sec-intro sec-intro--light" data-rise>Four steps, one rail. Walk the line from the first talk to the first wear.</p>
+      <div class="process-walk" data-rise>
+        <article class="walk-step">
+          <h3>Consultation</h3>
+          <p>You talk, the studio listens: the look, the fit, the occasion, and what the piece has to do.</p>
+        </article>
+        <article class="walk-step">
+          <h3>Fitting</h3>
+          <p>The piece is tried on you, pinned where it needs to sit, and marked before a single seam is sewn.</p>
+        </article>
+        <article class="walk-step">
+          <h3>Making</h3>
+          <p>Cut and sewn in the studio, seam by seam, until it holds the shape it was drawn for.</p>
+        </article>
+        <article class="walk-step">
+          <h3>Delivery</h3>
+          <p>Handed over ready to wear, with the fit checked one last time before it leaves the rail.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 6 · LOOKBOOK — orbit (sliders-23) -->
+  <!-- 7 · LOOKBOOK — full-bleed horizontal scroll, one scene per screen -->
   <section class="lookbook" id="lookbook">
     <div class="wrap">
       <h2 class="sec-title sec-title--light">
         <span class="mask-line"><span class="mask-inner" data-reveal>Six looks,</span></span>
         <span class="mask-line"><span class="mask-inner" data-reveal>worn out.</span></span>
       </h2>
-      <p class="sec-intro sec-intro--light" data-rise>Six of the eight looks, out in the world. Tap a thumbnail to bring it to the front of the ring.</p>
-      <div class="orbit-stage" id="orbitStage" role="region" aria-label="Lookbook orbit — tap a thumbnail to bring it forward">
-        <button class="orbit-thumb" type="button" data-i="0" aria-label="Burgundy Coat — bring to front"><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat"></button>
-        <button class="orbit-thumb" type="button" data-i="1" aria-label="Pinstripe Trousers — bring to front"><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers"></button>
-        <button class="orbit-thumb" type="button" data-i="2" aria-label="Yellow Tracksuit — bring to front"><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit"></button>
-        <button class="orbit-thumb" type="button" data-i="3" aria-label="Teal Satin Jumpsuit — bring to front"><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit"></button>
-        <button class="orbit-thumb" type="button" data-i="4" aria-label="Skeleton Tee — bring to front"><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee"></button>
-        <button class="orbit-thumb" type="button" data-i="5" aria-label="Red Tee, Black Jacket — bring to front"><img src="assets/images/v5/street-worn.jpg" alt="Red Tee, Black Jacket"></button>
-      </div>
-      <div class="orbit-cap" data-rise>
-        <h3 id="orbitName">Burgundy Coat</h3>
-        <p id="orbitLine">Shopping bags in both hands.</p>
-        <button class="btn btn--lime" id="orbitBack" type="button" hidden>Back to ring</button>
-      </div>
+      <p class="sec-intro sec-intro--light" data-rise>Six scenes, one per screen. Scroll sideways — each scene fills the frame.</p>
+    </div>
+    <div class="lookbook-track" id="lookbookTrack" tabindex="0" role="region" aria-label="Lookbook — scroll sideways, drag, or use the arrows">
+      <figure class="scene">
+        <img src="assets/images/v5/balloons.jpg" alt="Runway Night: Burgundy Coat, shopping bags in both hands">
+        <figcaption><h3>Runway Night</h3><p>Shopping bags in both hands.</p></figcaption>
+      </figure>
+      <figure class="scene">
+        <img src="assets/images/v5/night-look.jpg" alt="City Festival: Yellow Tracksuit, courtside by the sea">
+        <figcaption><h3>City Festival</h3><p>Courtside, by the sea.</p></figcaption>
+      </figure>
+      <figure class="scene">
+        <img src="assets/images/v5/picnic.jpg" alt="Gallery Opening: Teal Satin Jumpsuit, glass and daylight">
+        <figcaption><h3>Gallery Opening</h3><p>Glass and daylight.</p></figcaption>
+      </figure>
+      <figure class="scene">
+        <img src="assets/images/v5/street-worn.jpg" alt="Road Style: Red Tee Black Jacket, blue sky and daisy shades">
+        <figcaption><h3>Road Style</h3><p>Blue sky, daisy shades.</p></figcaption>
+      </figure>
+      <figure class="scene">
+        <img src="assets/images/v5/road-trip.jpg" alt="Launch Party: Skeleton Tee, pink wall and ripped denim">
+        <figcaption><h3>Launch Party</h3><p>Pink wall, ripped denim.</p></figcaption>
+      </figure>
+      <figure class="scene">
+        <img src="assets/images/v5/movie-night.jpg" alt="Night Out: Pinstripe Trousers, against a teal wall">
+        <figcaption><h3>Night Out</h3><p>Against a teal wall.</p></figcaption>
+      </figure>
+    </div>
+    <div class="wrap lookbook-controls">
+      <button class="lookbook-arrow" id="lookPrev" type="button" aria-label="Previous scene">←</button>
+      <button class="lookbook-arrow" id="lookNext" type="button" aria-label="Next scene">→</button>
     </div>
   </section>
 
-  <!-- 8 · SHOP INDEX — hover photo follows the cursor (hover-11) -->
-  <section class="index" id="index">
-    <div class="wrap">
-      <h2 class="sec-title">
-        <span class="mask-line"><span class="mask-inner" data-reveal>The index.</span></span>
-      </h2>
-      <p class="sec-intro" data-rise>Every look, in one list. Hover a name and its photo follows your cursor. On a touch screen, tap a name to see its photo.</p>
-      <div class="index-list" id="indexList">
-        <div class="index-row" data-i="0">
-          <button class="index-name" type="button" aria-expanded="false">Burgundy Coat</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/balloons.jpg" alt="Burgundy Coat" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="1">
-          <button class="index-name" type="button" aria-expanded="false">Pinstripe Trousers</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/movie-night.jpg" alt="Pinstripe Trousers" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="2">
-          <button class="index-name" type="button" aria-expanded="false">Yellow Tracksuit</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/night-look.jpg" alt="Yellow Tracksuit" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="3">
-          <button class="index-name" type="button" aria-expanded="false">Teal Satin Jumpsuit</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/picnic.jpg" alt="Teal Satin Jumpsuit" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="4">
-          <button class="index-name" type="button" aria-expanded="false">Skeleton Tee</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/road-trip.jpg" alt="Skeleton Tee" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="5">
-          <button class="index-name" type="button" aria-expanded="false">Red Tee, Black Jacket</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/street-worn.jpg" alt="Red Tee, Black Jacket" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="6">
-          <button class="index-name" type="button" aria-expanded="false">Neutral Knits</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/field.jpg" alt="Neutral Knits" loading="lazy"></figure>
-        </div>
-        <div class="index-row" data-i="7">
-          <button class="index-name" type="button" aria-expanded="false">Stripes &amp; Dresses</button>
-          <figure class="index-inline" hidden><img src="assets/images/v5/studio-stitch.jpg" alt="Stripes and Dresses" loading="lazy"></figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Floating photo for the index hover -->
-  <div class="index-float" id="indexFloat" aria-hidden="true"><img id="indexFloatImg" src="assets/images/v5/balloons.jpg" alt=""></div>
-
-  <!-- SIZE & FIT -->
+  <!-- 8 · SIZE & FIT -->
   <section class="size" id="size">
     <div class="wrap size-grid">
       <div>
@@ -444,7 +334,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- 9 · FAQ -->
   <section class="faq" id="faq">
     <div class="wrap faq-grid">
       <div>
@@ -483,7 +373,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- 10 · CONTACT -->
   <section class="contact" id="contact">
     <div class="wrap contact-grid">
       <div>
@@ -517,9 +407,9 @@
                 <option>Yellow Tracksuit</option>
                 <option>Teal Satin Jumpsuit</option>
                 <option>Skeleton Tee</option>
-                <option>Red Tee, Black Jacket</option>
+                <option>Red Tee Black Jacket</option>
                 <option>Neutral Knits</option>
-                <option>Stripes &amp; Dresses</option>
+                <option>Stripes and Dresses</option>
               </optgroup>
               <optgroup label="Services">
                 <option>Custom Tailoring</option>
@@ -551,8 +441,9 @@
 
 </main>
 
-<!-- FOOTER — designed close: giant wordmark, not a sitemap -->
+<!-- FOOTER — giant wordmark full width -->
 <footer class="footer">
+  <p class="footer-slogan">Cut bold. Sewn honest. Worn loud.</p>
   <p class="footer-word" aria-label="AURELO">AURELO</p>
   <p class="footer-base">© 2026 AURELO. A fashion house, open since 2019.</p>
 </footer>
@@ -560,6 +451,6 @@
 <script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-<script src="assets/js/main.js?v=8"></script>
+<script src="assets/js/main.js?v=9"></script>
 </body>
 </html>

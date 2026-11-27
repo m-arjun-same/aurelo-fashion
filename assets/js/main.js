@@ -1,20 +1,28 @@
 /* ============================================================
-   AURELO — rebuild · main.js (100% own code)
+   AURELO — total rebuild · main.js (100% own code)
    Engine: Lenis smooth scroll + GSAP + ScrollTrigger, all vendored.
    One easing family: cubic-bezier(.22,1,.36,1) reveals/hovers/panels,
    cubic-bezier(.76,0,.24,1) page moves. Nothing linear, nothing bouncy.
-   The 8 library motions (rebuilt in own code from descriptions):
-   1 hero-22 heroScatter / openHeroZoom / closeHeroZoom
-   2 menu-14 pixelMenu
-   3 sliders-18 layoutFan
-   4 grid-3 shopAccordion
-   5 scroll-18 scrollFan
-   6 sliders-23 lookbookOrbit / orbitToArc
-   7 text-15 blockSwipe
-   8 hover-11 indexHover
+   Composition (from the runway-store + boutique-rail previews,
+   composition only — their prompts are locked, never invented):
+   1 heroWalk — eight looks in a shrinking walking row, ghost wordmark
+   2 runwayWalk — scroll-scrubbed walk; centre look steps forward
+   3 shopRail — eight looks hanging from one rail line
+   4 lookbookScroll — full-bleed horizontal scenes, one per screen
+   5 pixelMenu — menu-14 pixel-block menu (kept, passed live probe)
+   6 processWalk — four stops on one walked line (static, no pin)
    NOTE: the enquiry form is front-end only — there is no backend
    and nothing is sent anywhere. The success state confirms the
    enquiry was recorded on this page only.
+   BUG LESSONS, baked in:
+   (a) NEVER setPointerCapture on a container holding buttons — it
+       swallows their clicks. Drag handlers skip pointerdown on
+       button/a and never capture; movement is tracked on window.
+   (b) Ring/walk math is relative to centre only — the stage centre
+       is never added twice (cards are centred by left:50%/top:50%
+       + xPercent/yPercent -50, offsets are relative to that).
+   (c) Every Enquire click calls resetFormState() first, so the form
+       is always fresh with the look pre-selected, even from success.
    ============================================================ */
 (function () {
   "use strict";
@@ -59,38 +67,37 @@
   var LOOKS = [
     { name: "Burgundy Coat", photo: "assets/images/v5/balloons.jpg",
       line: "Wine-red wool coat, high collar, leather gloves, bags in both hands.",
-      fabric: "Wool coat, high collar." },
+      fabric: "Wool coat, high collar.",
+      fit: "Sharp through the shoulder. Size up to layer a knit under it." },
     { name: "Pinstripe Trousers", photo: "assets/images/v5/movie-night.jpg",
       line: "Black pinstripe wide legs, a white off-shoulder crop, red shades.",
-      fabric: "Pinstripe, wide leg." },
+      fabric: "Pinstripe, wide leg.",
+      fit: "Wide leg, high waist. The crop top sits above the waistband." },
     { name: "Yellow Tracksuit", photo: "assets/images/v5/night-look.jpg",
       line: "Sun-yellow fleece, cropped hoodie, drawstring joggers, courtside.",
-      fabric: "Yellow fleece, cropped hoodie." },
+      fabric: "Yellow fleece, cropped hoodie.",
+      fit: "Relaxed fleece throughout. The hoodie is cropped; the joggers sit on the waist." },
     { name: "Teal Satin Jumpsuit", photo: "assets/images/v5/picnic.jpg",
       line: "Teal satin halter, deep V, wide waistband, hands in pockets.",
-      fabric: "Teal satin, halter neck." },
+      fabric: "Teal satin, halter neck.",
+      fit: "Fitted through the bodice, straight through the leg. The waistband does the shaping." },
     { name: "Skeleton Tee", photo: "assets/images/v5/road-trip.jpg",
       line: "Black tee with a white skeleton hand print, light ripped denim.",
-      fabric: "Black cotton tee, skeleton print." },
-    { name: "Red Tee, Black Jacket", photo: "assets/images/v5/street-worn.jpg",
+      fabric: "Black cotton tee, skeleton print.",
+      fit: "Boxy tee, straight through the body. The denim is a straight leg with a ripped knee." },
+    { name: "Red Tee Black Jacket", photo: "assets/images/v5/street-worn.jpg",
       line: "Red lettered tee under a black jacket, daisy shades, blue sky.",
-      fabric: "Red cotton tee, black jacket." },
+      fabric: "Red cotton tee, black jacket.",
+      fit: "The tee is a regular fit; the jacket is cut loose over it." },
     { name: "Neutral Knits", photo: "assets/images/v5/field.jpg",
       line: "Cream cable knit, beige and rust layers, straight off the rail.",
-      fabric: "Cable knit, neutral wool." },
-    { name: "Stripes & Dresses", photo: "assets/images/v5/studio-stitch.jpg",
+      fabric: "Cable knit, neutral wool.",
+      fit: "Easy, layering knits. The cable knit is the heaviest piece on the rail." },
+    { name: "Stripes and Dresses", photo: "assets/images/v5/studio-stitch.jpg",
       line: "Striped tops, floral dresses and folded denim, hung in the shop.",
-      fabric: "Mixed rail: dresses, stripes, denim." }
+      fabric: "Mixed rail: dresses, stripes, denim.",
+      fit: "Each piece is cut to its own shape; the rail mixes fitted dresses and easy stripes." }
   ];
-  var ORBIT_LINES = [
-    "Shopping bags in both hands.",
-    "Against a teal wall.",
-    "Courtside, by the sea.",
-    "Glass and daylight.",
-    "Pink wall, ripped denim.",
-    "Blue sky, daisy shades."
-  ];
-  var STEP_TITLES = ["Consultation", "Fitting", "Making", "Delivery"];
 
   /* ---------- Lenis smooth scroll (never native scroll) ---------- */
   var lenis = null;
@@ -133,86 +140,30 @@
   });
 
   /* ============================================================
-     1 · HERO — hero-22: scattered photos, drift + pointer parallax,
-     click to zoom full-bleed.
+     HERO — heroWalk: the line-up. Tap a figure to walk its look
+     to the centre of the runway.
      ============================================================ */
-  var hero = document.getElementById("hero");
-  var scatterPhotos = Array.prototype.slice.call(document.querySelectorAll(".scatter-photo"));
-  var heroZoom = document.getElementById("heroZoom");
-  var heroZoomImg = document.getElementById("heroZoomImg");
-  var heroZoomName = document.getElementById("heroZoomName");
-  var heroZoomLine = document.getElementById("heroZoomLine");
-
-  function openHeroZoom(i) {
-    var look = LOOKS[i];
-    if (!look || !heroZoom) return;
-    heroZoomImg.src = look.photo;
-    heroZoomImg.alt = look.name + ": " + look.line;
-    heroZoomName.textContent = look.name;
-    heroZoomLine.textContent = look.line;
-    heroZoom.hidden = false;
-    document.body.classList.add("menu-open");
-    if (lenis) lenis.stop();
-    var closeBtn = document.getElementById("heroZoomClose");
-    if (closeBtn) closeBtn.focus();
-  }
-  function closeHeroZoom() {
-    if (!heroZoom || heroZoom.hidden) return;
-    heroZoom.hidden = true;
-    document.body.classList.remove("menu-open");
-    if (lenis) lenis.start();
-  }
-  scatterPhotos.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      openHeroZoom(parseInt(btn.getAttribute("data-look-i"), 10));
-    });
-  });
-  var zoomClose = document.getElementById("heroZoomClose");
-  if (zoomClose) zoomClose.addEventListener("click", closeHeroZoom);
-  if (heroZoom) heroZoom.addEventListener("click", function (e) {
-    if (e.target === heroZoom || e.target === heroZoomImg) closeHeroZoom();
-  });
-
-  function heroScatter() {
-    if (reduced || coarse || !hero) return;
-    var px = 0, py = 0, tx = 0, ty = 0;
-    hero.addEventListener("mousemove", function (e) {
-      var r = hero.getBoundingClientRect();
-      tx = (e.clientX - r.left) / r.width - 0.5;
-      ty = (e.clientY - r.top) / r.height - 0.5;
-    });
-    hero.addEventListener("mouseleave", function () { tx = 0; ty = 0; });
-    function tick() {
-      px += (tx - px) * 0.06;
-      py += (ty - py) * 0.06;
-      scatterPhotos.forEach(function (btn) {
-        var img = btn.querySelector("img");
-        if (!img) return;
-        var d = parseFloat(btn.getAttribute("data-depth") || "1");
-        img.style.transform = "translate3d(" + (px * 16 * d).toFixed(2) + "px," + (py * 12 * d).toFixed(2) + "px,0)";
-      });
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-  heroScatter();
-
-  /* Hero headline: line-mask reveal from a clean hidden state.
-     Initial transforms are set by GSAP only — no CSS hiding, so the
-     headline is fully visible without JS and never overlaps mid-load. */
   function heroIntro() {
     if (!hasGsap || reduced) return;
     gsap.fromTo(".hero-title .mask-inner",
       { yPercent: 112 },
       { yPercent: 0, duration: 1.1, ease: EASE, stagger: 0.09, delay: 0.1 });
-    gsap.fromTo(".hero-sub, .hero-slogan, .hero-ctas",
+    gsap.fromTo(".hero-sub, .hero-ctas",
       { y: 24, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.9, ease: EASE, stagger: 0.08, delay: 0.45 });
+    gsap.fromTo(".walk-fig",
+      { y: 32, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, ease: EASE, stagger: 0.05, delay: 0.6 });
   }
   heroIntro();
+  document.querySelectorAll(".walk-fig").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      runwayTo(parseInt(btn.getAttribute("data-look-i"), 10));
+    });
+  });
 
   /* ============================================================
-     2 · MENU — menu-14: black pixel blocks dissolve in, then links.
+     MENU — menu-14: black pixel blocks dissolve in, then links.
      ============================================================ */
   var menuBtn = document.getElementById("menuBtn");
   var pixelMenu = document.getElementById("pixelMenu");
@@ -295,23 +246,46 @@
     a.addEventListener("click", function () { closePixelMenu(); });
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      if (heroZoom && !heroZoom.hidden) closeHeroZoom();
-      else if (pixelMenuOpen) closePixelMenu();
-    }
+    if (e.key === "Escape" && pixelMenuOpen) closePixelMenu();
   });
 
   /* ============================================================
-     3 · COLLECTIONS — sliders-18 arc fan.
+     RUNWAY — runwayWalk: scroll-scrubbed walk.
+     p runs 0..1 across the pinned scroll; look i is centre at
+     p = i/7. Cards are centred by left:50%/top:50% + xPercent/yPercent
+     -50, so every offset below is relative to centre — the stage
+     centre is never added twice. Arrows/drag/keyboard do NOT tween
+     the scrub proxy (that would kill the scrub tween); they scroll
+     the page to the scroll position for that look instead.
+     Desktop only: ≤640px and reduced-motion fall back to a static
+     vertical walk (CSS), and the scrub is never created.
      ============================================================ */
-  var fanStage = document.getElementById("fanStage");
-  var fanCards = fanStage ? Array.prototype.slice.call(fanStage.children) : [];
-  var fanName = document.getElementById("fanName");
-  var fanLine = document.getElementById("fanLine");
-  var fanFabric = document.getElementById("fanFabric");
-  var fanEnquire = document.getElementById("fanEnquire");
-  var fanCentre = 0;
-  var fanDragging = false;
+  var runwaySection = document.getElementById("runway");
+  var runwayStage = document.getElementById("runwayStage");
+  var runwayLooks = runwayStage ? Array.prototype.slice.call(runwayStage.children) : [];
+  var runwayName = document.getElementById("runwayName");
+  var runwayLine = document.getElementById("runwayLine");
+  var runwayFabric = document.getElementById("runwayFabric");
+  var runwayEnquire = document.getElementById("runwayEnquire");
+  var runwayCentre = 0;
+  var runwayP = 0;
+  var runwayST = null;
+  var runwayTarget = -1;
+  var runwayFlyTimer = null;
+
+  /* Synchronous detail update. The old fan updated its detail only
+     inside a GSAP callback, and a click interrupting an in-flight
+     tween swallowed the update — the heading never moved even
+     though the fan rotated. Here the text is set in the step
+     function itself, synchronously; only transforms animate. */
+  function setRunwayDetail(i) {
+    runwayCentre = i;
+    var look = LOOKS[i];
+    if (runwayName) runwayName.textContent = look.name;
+    if (runwayLine) runwayLine.textContent = look.line;
+    if (runwayFabric) runwayFabric.textContent = look.fabric;
+    if (runwayEnquire) runwayEnquire.setAttribute("data-look", look.name);
+  }
 
   function wrapOffset(i, centre) {
     var d = (i - centre) % 8;
@@ -319,336 +293,212 @@
     if (d < -4) d += 8;
     return d;
   }
-  function layoutFan(animate) {
-    if (!fanCards.length) return;
-    var step = isMobile() ? 56 : 150;
-    fanCards.forEach(function (card, i) {
-      var d = wrapOffset(i, fanCentre);
-      var ad = Math.abs(d);
-      var props = {
-        x: d * step,
-        y: ad * ad * 28,
-        rotation: d * 14,
-        scale: 1 - ad * 0.12,
-        opacity: Math.max(0.1, 1 - ad * 0.22),
-        zIndex: 20 - ad
-      };
-      if (hasGsap && animate !== false && !reduced) {
-        gsap.to(card, Object.assign({ duration: 0.6, ease: EASE_PAGE, overwrite: "auto" }, props));
-      } else if (hasGsap) {
-        gsap.set(card, props);
-      } else {
-        card.style.transform = "translate(-50%,-50%) translate(" + props.x + "px," + props.y + "px) rotate(" + props.rotation + "deg) scale(" + props.scale + ")";
-        card.style.opacity = String(props.opacity);
-        card.style.zIndex = String(props.zIndex);
-      }
-    });
-    var look = LOOKS[fanCentre];
-    if (fanName) fanName.textContent = look.name;
-    if (fanLine) fanLine.textContent = look.line;
-    if (fanFabric) fanFabric.textContent = look.fabric;
-    if (fanEnquire) fanEnquire.setAttribute("data-look", look.name);
-  }
-  function fanTo(i, animate) {
-    fanCentre = ((i % 8) + 8) % 8;
-    layoutFan(animate);
-  }
-  if (hasGsap) fanCards.forEach(function (card) { gsap.set(card, { xPercent: -50, yPercent: -50 }); });
-  layoutFan(false);
-  var fanPrev = document.getElementById("fanPrev");
-  var fanNext = document.getElementById("fanNext");
-  if (fanPrev) fanPrev.addEventListener("click", function () { fanTo(fanCentre - 1); });
-  if (fanNext) fanNext.addEventListener("click", function () { fanTo(fanCentre + 1); });
-  var fanEl = document.getElementById("fan");
-  if (fanEl) {
-    fanEl.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { e.preventDefault(); fanTo(fanCentre - 1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); fanTo(fanCentre + 1); }
-    });
-    var fanDownX = 0, fanMoved = 0;
-    fanEl.addEventListener("pointerdown", function (e) {
-      /* Buttons inside #fan must keep their clicks: setPointerCapture
-         on the fan would retarget the pointer and swallow them. */
-      if (e.target.closest("button, a")) return;
-      fanDragging = true;
-      fanDownX = e.clientX;
-      fanMoved = 0;
-      fanEl.setPointerCapture(e.pointerId);
-    });
-    fanEl.addEventListener("pointermove", function (e) {
-      if (!fanDragging) return;
-      fanMoved = e.clientX - fanDownX;
-    });
-    fanEl.addEventListener("pointerup", function () {
-      if (!fanDragging) return;
-      fanDragging = false;
-      if (Math.abs(fanMoved) > 60) fanTo(fanCentre + (fanMoved < 0 ? 1 : -1));
-    });
-    fanEl.addEventListener("pointercancel", function () { fanDragging = false; });
-    fanCards.forEach(function (card, i) {
-      card.addEventListener("click", function () {
-        if (Math.abs(fanMoved) < 10 && i !== fanCentre) fanTo(i);
+  function layoutRunway(p) {
+    runwayP = p;
+    if (!runwayLooks.length || !hasGsap) return;
+    /* Step sized so every look's box stays inside the stage: the
+       farthest offset is 4 steps out, so step <= wrapW/8 - 24 keeps
+       even the outermost (smallest, faintest) look in bounds. */
+    var wrapW = Math.min(1440, window.innerWidth - 48);
+    var step = Math.max(56, Math.min(160, wrapW / 8 - 24));
+    runwayLooks.forEach(function (card, i) {
+      var d = wrapOffset(i, Math.round(p * 7));
+      /* Continuous position: use the fractional offset so the walk
+         slides smoothly between centres instead of jumping. */
+      var off = i - p * 7;
+      if (off > 4) off -= 8;
+      if (off < -4) off += 8;
+      var ad = Math.abs(off);
+      gsap.set(card, {
+        x: off * step,
+        y: ad * ad * 16,
+        rotation: off * 3,
+        scale: 1 - Math.min(0.55, ad * 0.13),
+        opacity: Math.max(0.15, 1 - ad * 0.18),
+        zIndex: 20 - Math.round(ad)
       });
     });
-  }
-
-  /* ============================================================
-     4 · SHOP — grid-3 column accordion.
-     ============================================================ */
-  var shopAcc = document.getElementById("shopAcc");
-  var accCols = shopAcc ? Array.prototype.slice.call(shopAcc.children) : [];
-  function openShop(i) {
-    accCols.forEach(function (col, k) {
-      var open = k === i;
-      col.classList.toggle("is-open", open);
-      var strip = col.querySelector(".acc-strip");
-      if (strip) strip.setAttribute("aria-expanded", String(open));
-    });
-  }
-  function shopAccordion() {
-    accCols.forEach(function (col, i) {
-      var strip = col.querySelector(".acc-strip");
-      if (!strip) return;
-      strip.addEventListener("click", function () { openShop(i); });
-      if (!coarse) {
-        strip.addEventListener("mouseenter", function () { openShop(i); });
-        strip.addEventListener("focus", function () { openShop(i); });
+    var idx = Math.max(0, Math.min(7, Math.round(p * 7)));
+    if (runwayTarget >= 0) {
+      /* A programmatic step is in flight: hold the detail at the
+         clicked look instead of letting the scrub flicker it back
+         to the old centre mid-scroll. Cleared on arrival or by
+         timeout, so a manual scroll never leaves it frozen. */
+      if (idx === runwayTarget) {
+        runwayTarget = -1;
+        if (runwayFlyTimer) { clearTimeout(runwayFlyTimer); runwayFlyTimer = null; }
       }
-    });
+    } else if (idx !== runwayCentre) {
+      setRunwayDetail(idx);
+    }
   }
-  shopAccordion();
-
-  /* ============================================================
-     5 · PROCESS — scroll-18 scroll fan (pinned scrub).
-     ============================================================ */
-  var processSection = document.getElementById("process");
-  var processStage = document.getElementById("processStage");
-  var processTitle = document.getElementById("processTitle");
-  var stepCards = processStage ? Array.prototype.slice.call(processStage.children) : [];
-  var processStep = -1;
-
-  function scrollFan() {
-    if (!processSection || !stepCards.length) return;
+  function runwayTo(i) {
+    i = ((i % 8) + 8) % 8;
+    /* Synchronous: detail text updates NOW, before any scroll or
+       tween runs — never inside a callback that a click can kill. */
+    setRunwayDetail(i);
+    runwayTarget = i;
+    if (runwayFlyTimer) clearTimeout(runwayFlyTimer);
+    runwayFlyTimer = setTimeout(function () { runwayTarget = -1; runwayFlyTimer = null; }, 1600);
+    if (runwayST) {
+      /* Scroll the page to the position where look i is centre. */
+      var target = runwayST.start + (i / 7) * (runwayST.end - runwayST.start);
+      if (lenis) lenis.scrollTo(target, { duration: 1.2 });
+      else window.scrollTo({ top: target, behavior: reduced ? "auto" : "smooth" });
+    } else {
+      /* No pin (mobile / reduced motion): scroll the look into view. */
+      var card = runwayLooks[i];
+      if (card) scrollToTarget(card);
+      else scrollToTarget("#runway");
+    }
+  }
+  function runwayWalk() {
+    if (!runwaySection || !runwayLooks.length) return;
     if (reduced || !hasGsap || typeof ScrollTrigger === "undefined") {
-      processSection.classList.add("no-pin");
+      runwaySection.classList.add("no-pin");
       return;
     }
     var mm = gsap.matchMedia();
     mm.add("(min-width: 641px)", function () {
-      processSection.classList.add("is-pinned");
-      stepCards.forEach(function (card) { gsap.set(card, { xPercent: -50, yPercent: -50 }); });
+      runwaySection.classList.remove("no-pin");
+      runwayLooks.forEach(function (card) { gsap.set(card, { xPercent: -50, yPercent: -50 }); });
+      layoutRunway(0);
       var proxy = { p: 0 };
-      function render() {
-        var p = proxy.p;
-        stepCards.forEach(function (card, i) {
-          var off = i - p * 3;
-          var ad = Math.abs(off);
-          gsap.set(card, {
-            x: off * 240,
-            y: ad * ad * 36,
-            rotation: off * 16,
-            scale: 1 - Math.min(0.3, ad * 0.09),
-            opacity: Math.max(0.05, 1 - Math.max(0, ad - 1.2) * 0.8)
-          });
-        });
-        var idx = Math.max(0, Math.min(3, Math.round(p * 3)));
-        if (idx !== processStep) {
-          processStep = idx;
-          if (processTitle) {
-            processTitle.textContent = STEP_TITLES[idx];
-            gsap.fromTo(processTitle, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: EASE });
-          }
-        }
-      }
-      render();
       var st = gsap.to(proxy, {
         p: 1, ease: "none",
         scrollTrigger: {
-          trigger: "#processPin",
+          trigger: "#runwayPin",
           start: "top top+=" + 76,
-          end: "+=140%",
+          end: "+=160%",
           pin: true,
           scrub: true,
-          onUpdate: render
+          onUpdate: function () { layoutRunway(proxy.p); }
         }
       });
+      runwayST = st.scrollTrigger;
       return function () {
         if (st.scrollTrigger) st.scrollTrigger.kill();
         st.kill();
-        processSection.classList.remove("is-pinned");
-        processSection.classList.add("no-pin");
-        stepCards.forEach(function (card) { gsap.set(card, { clearProps: "all", opacity: 1 }); });
+        runwayST = null;
+        runwaySection.classList.add("no-pin");
+        runwayLooks.forEach(function (card) { gsap.set(card, { clearProps: "all", opacity: 1 }); });
       };
     });
     mm.add("(max-width: 640px)", function () {
-      processSection.classList.add("no-pin");
-      return function () { processSection.classList.remove("no-pin"); };
+      runwaySection.classList.add("no-pin");
+      return function () { runwaySection.classList.remove("no-pin"); };
     });
   }
-  scrollFan();
+  runwayWalk();
+
+  var runwayPrev = document.getElementById("runwayPrev");
+  var runwayNext = document.getElementById("runwayNext");
+  if (runwayPrev) runwayPrev.addEventListener("click", function () { runwayTo(runwayCentre - 1); });
+  if (runwayNext) runwayNext.addEventListener("click", function () { runwayTo(runwayCentre + 1); });
+  if (runwayStage) {
+    runwayStage.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); runwayTo(runwayCentre - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); runwayTo(runwayCentre + 1); }
+    });
+    /* Drag: never setPointerCapture on the stage (it holds Enquire
+       buttons) and never start a drag from a button or link. Movement
+       is tracked on window, so a pointer leaving the stage still ends
+       cleanly. */
+    var rwDownX = 0, rwMoved = 0, rwDragging = false;
+    runwayStage.addEventListener("pointerdown", function (e) {
+      if (e.target.closest("button, a")) return;
+      rwDragging = true;
+      rwDownX = e.clientX;
+      rwMoved = 0;
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!rwDragging) return;
+      rwMoved = e.clientX - rwDownX;
+    });
+    window.addEventListener("pointerup", function () {
+      if (!rwDragging) return;
+      rwDragging = false;
+      if (Math.abs(rwMoved) > 60) runwayTo(runwayCentre + (rwMoved < 0 ? 1 : -1));
+    });
+    runwayLooks.forEach(function (card, i) {
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("button, a")) return;
+        if (Math.abs(rwMoved) < 10 && i !== runwayCentre) runwayTo(i);
+      });
+    });
+  }
 
   /* ============================================================
-     6 · LOOKBOOK — sliders-23 orbit.
+     SHOP — shopRail: eight looks hanging from one rail line.
+     Tap a hanging look; its fit note, sizes and Enquire open
+     in the detail below the rail.
      ============================================================ */
-  var orbitStage = document.getElementById("orbitStage");
-  var orbitThumbs = orbitStage ? Array.prototype.slice.call(orbitStage.children) : [];
-  var orbitName = document.getElementById("orbitName");
-  var orbitLine = document.getElementById("orbitLine");
-  var orbitBack = document.getElementById("orbitBack");
-  var orbitAngle = 0;
-  var orbitMode = "ring";
-  var orbitCentre = 0;
+  var railList = document.getElementById("railList");
+  var railItems = railList ? Array.prototype.slice.call(railList.children) : [];
+  var railName = document.getElementById("railName");
+  var railFit = document.getElementById("railFit");
+  var railEnquire = document.getElementById("railEnquire");
 
-  function orbitRadius() {
-    if (!orbitStage) return 120;
-    var w = orbitStage.clientWidth, h = orbitStage.clientHeight;
-    return Math.max(80, Math.min(w, h) / 2 - (isMobile() ? 60 : 90));
-  }
-  function orbitPlaceRing() {
-    if (!orbitStage) return;
-    var R = orbitRadius();
-    /* Thumbs are already centred by left:50%/top:50% + translate(-50%,-50%),
-       so ring offsets are relative to centre — adding cx/cy again pushed
-       the ring a full half-stage down-right, clipping it at the edge. */
-    orbitThumbs.forEach(function (thumb, i) {
-      var a = (orbitAngle + i * 60) * Math.PI / 180;
-      var x = R * Math.cos(a);
-      var y = R * Math.sin(a);
-      thumb.style.transform = "translate(-50%,-50%) translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) scale(1)";
-      thumb.style.zIndex = "1";
-      thumb.classList.remove("is-centre");
+  function openRail(i) {
+    var look = LOOKS[i];
+    if (!look) return;
+    railItems.forEach(function (item, k) {
+      var open = k === i;
+      item.classList.toggle("is-active", open);
+      item.setAttribute("aria-expanded", String(open));
     });
+    if (railName) railName.textContent = look.name;
+    if (railFit) railFit.textContent = look.fit;
+    if (railEnquire) railEnquire.setAttribute("data-look", look.name);
   }
-  function orbitToArc(i) {
-    orbitMode = "arc";
-    orbitCentre = i;
-    if (orbitStage) orbitStage.classList.add("is-arc");
-    var spread = isMobile() ? 60 : 150;
-    orbitThumbs.forEach(function (thumb, j) {
-      var rel = ((j - i) % 6 + 6) % 6;
-      if (rel > 3) rel -= 6;
-      var ad = Math.abs(rel);
-      var x = rel * spread;
-      var y = ad * ad * 26;
-      var s = rel === 0 ? 1.5 : 1 - ad * 0.12;
-      thumb.style.transform = "translate(-50%,-50%) translate(" + x + "px," + y + "px) scale(" + s + ")";
-      thumb.style.zIndex = String(10 - ad);
-      thumb.classList.toggle("is-centre", rel === 0);
-    });
-    if (orbitName) orbitName.textContent = LOOKS[i].name;
-    if (orbitLine) orbitLine.textContent = ORBIT_LINES[i];
-    if (orbitBack) orbitBack.hidden = false;
-  }
-  function orbitToRing() {
-    orbitMode = "ring";
-    orbitCentre = 0;
-    if (orbitStage) orbitStage.classList.remove("is-arc");
-    if (orbitBack) orbitBack.hidden = true;
-    if (orbitName) orbitName.textContent = LOOKS[0].name;
-    if (orbitLine) orbitLine.textContent = ORBIT_LINES[0];
-    orbitPlaceRing();
-  }
-  function lookbookOrbit() {
-    if (!orbitStage || !orbitThumbs.length) return;
-    orbitPlaceRing();
-    if (hasGsap && !reduced) {
-      gsap.ticker.add(function () {
-        if (orbitMode !== "ring") return;
-        orbitAngle += 0.05;
-        orbitPlaceRing();
-      });
-    }
-    orbitThumbs.forEach(function (thumb, i) {
-      thumb.addEventListener("click", function () { orbitToArc(i); });
-    });
-    if (orbitBack) orbitBack.addEventListener("click", orbitToRing);
-  }
-  lookbookOrbit();
+  railItems.forEach(function (item, i) {
+    item.addEventListener("click", function () { openRail(i); });
+  });
 
   /* ============================================================
-     7 · ABOUT headline — text-15 block swipe.
+     LOOKBOOK — lookbookScroll: full-bleed horizontal scenes.
+     Native scroll-snap + arrows + keyboard + drag. Drag never
+     captures the pointer and never starts on a button.
      ============================================================ */
-  var swipeWords = Array.prototype.slice.call(document.querySelectorAll(".swipe-word"));
-  function blockSwipe() {
-    if (!swipeWords.length) return;
-    if (reduced || !hasGsap || typeof ScrollTrigger === "undefined") return;
-    gsap.set(swipeWords, { autoAlpha: 0 });
-    var revealed = false;
-    function reveal() {
-      if (revealed) return;
-      revealed = true;
-      swipeWords.forEach(function (w, k) {
-        setTimeout(function () {
-          w.classList.add("in");
-          gsap.to(w, { autoAlpha: 1, duration: 0.01, delay: 0.4 });
-        }, k * 80);
-      });
-    }
-    ScrollTrigger.create({
-      trigger: ".about-title", start: "top 85%", once: true, onEnter: reveal
-    });
-    setTimeout(reveal, 6000); /* failsafe — words can never stay hidden */
+  var lookTrack = document.getElementById("lookbookTrack");
+  function lookStep(dir) {
+    if (!lookTrack) return;
+    var w = lookTrack.clientWidth || window.innerWidth;
+    lookTrack.scrollBy({ left: dir * w, behavior: reduced ? "auto" : "smooth" });
   }
-  blockSwipe();
-
-  /* ============================================================
-     8 · SHOP INDEX — hover-11: photo follows the cursor.
-     ============================================================ */
-  var indexList = document.getElementById("indexList");
-  var indexFloat = document.getElementById("indexFloat");
-  var indexFloatImg = document.getElementById("indexFloatImg");
-  var indexRows = indexList ? Array.prototype.slice.call(indexList.children) : [];
-  function indexHover() {
-    if (!indexList || !indexRows.length) return;
-    if (coarse) {
-      /* touch: tap a name to reveal its photo inline under the row */
-      indexRows.forEach(function (row) {
-        var btn = row.querySelector(".index-name");
-        var fig = row.querySelector(".index-inline");
-        if (!btn || !fig) return;
-        btn.addEventListener("click", function () {
-          var open = fig.hidden;
-          indexRows.forEach(function (r) {
-            var f = r.querySelector(".index-inline");
-            var b = r.querySelector(".index-name");
-            if (f) f.hidden = true;
-            if (b) b.setAttribute("aria-expanded", "false");
-          });
-          fig.hidden = !open;
-          btn.setAttribute("aria-expanded", String(open));
-        });
-      });
-      return;
-    }
-    if (!indexFloat || !indexFloatImg) return;
-    var tx = 0, ty = 0, fx = 0, fy = 0, active = false;
-    indexList.addEventListener("mousemove", function (e) {
-      tx = Math.min(e.clientX + 24, window.innerWidth - 260);
-      ty = Math.max(16, e.clientY - 180);
+  var lookPrev = document.getElementById("lookPrev");
+  var lookNext = document.getElementById("lookNext");
+  if (lookPrev) lookPrev.addEventListener("click", function () { lookStep(-1); });
+  if (lookNext) lookNext.addEventListener("click", function () { lookStep(1); });
+  if (lookTrack) {
+    lookTrack.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); lookStep(-1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); lookStep(1); }
     });
-    indexRows.forEach(function (row, i) {
-      row.addEventListener("mouseenter", function () {
-        indexFloatImg.src = LOOKS[i].photo;
-        indexFloat.classList.add("is-on");
-        row.classList.add("is-active");
-        active = true;
-      });
-      row.addEventListener("mouseleave", function () {
-        row.classList.remove("is-active");
-      });
+    var lbDownX = 0, lbStart = 0, lbDragging = false, lbMoved = 0;
+    lookTrack.addEventListener("pointerdown", function (e) {
+      if (e.target.closest("button, a")) return;
+      lbDragging = true;
+      lbDownX = e.clientX;
+      lbStart = lookTrack.scrollLeft;
+      lbMoved = 0;
+      lookTrack.classList.add("is-dragging");
     });
-    indexList.addEventListener("mouseleave", function () {
-      indexFloat.classList.remove("is-on");
-      active = false;
+    window.addEventListener("pointermove", function (e) {
+      if (!lbDragging) return;
+      lbMoved = e.clientX - lbDownX;
+      lookTrack.scrollLeft = lbStart - lbMoved;
     });
-    (function follow() {
-      fx += (tx - fx) * 0.18;
-      fy += (ty - fy) * 0.18;
-      if (active) indexFloat.style.transform = "translate(" + fx.toFixed(1) + "px," + fy.toFixed(1) + "px)";
-      requestAnimationFrame(follow);
-    })();
+    window.addEventListener("pointerup", function () {
+      if (!lbDragging) return;
+      lbDragging = false;
+      lookTrack.classList.remove("is-dragging");
+      /* Snap back to the nearest scene after a drag. */
+      var w = lookTrack.clientWidth || window.innerWidth;
+      var idx = Math.round(lookTrack.scrollLeft / w);
+      lookTrack.scrollTo({ left: idx * w, behavior: reduced ? "auto" : "smooth" });
+    });
   }
-  indexHover();
 
   /* ---------- enquiry pre-select (resets the form every time) ---------- */
   var interest = document.getElementById("fInterest");
@@ -758,14 +608,24 @@
     }
   }
 
-  /* ---------- resize: re-layout the JS-positioned motions ---------- */
+  /* Test hook: lets the smoke suite drive the walk and read its
+     state without reaching into the closure. No user-facing effect. */
+  window.__aurelo = {
+    runway: {
+      layout: layoutRunway,
+      to: runwayTo,
+      centre: function () { return runwayCentre; },
+      looks: runwayLooks
+    },
+    rail: { open: openRail }
+  };
+
+  /* ---------- resize: re-layout the runway walk ---------- */
   var resizeTimer = null;
   window.addEventListener("resize", function () {
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
-      layoutFan(false);
-      if (orbitMode === "ring") orbitPlaceRing();
-      else orbitToArc(orbitCentre);
+      if (runwayST) layoutRunway(runwayP);
     }, 200);
   });
 
