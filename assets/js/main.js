@@ -367,6 +367,9 @@
     });
     var fanDownX = 0, fanMoved = 0;
     fanEl.addEventListener("pointerdown", function (e) {
+      /* Buttons inside #fan must keep their clicks: setPointerCapture
+         on the fan would retarget the pointer and swallow them. */
+      if (e.target.closest("button, a")) return;
       fanDragging = true;
       fanDownX = e.clientX;
       fanMoved = 0;
@@ -504,11 +507,13 @@
   function orbitPlaceRing() {
     if (!orbitStage) return;
     var R = orbitRadius();
-    var cx = orbitStage.clientWidth / 2, cy = orbitStage.clientHeight / 2;
+    /* Thumbs are already centred by left:50%/top:50% + translate(-50%,-50%),
+       so ring offsets are relative to centre — adding cx/cy again pushed
+       the ring a full half-stage down-right, clipping it at the edge. */
     orbitThumbs.forEach(function (thumb, i) {
       var a = (orbitAngle + i * 60) * Math.PI / 180;
-      var x = cx + R * Math.cos(a);
-      var y = cy + R * Math.sin(a);
+      var x = R * Math.cos(a);
+      var y = R * Math.sin(a);
       thumb.style.transform = "translate(-50%,-50%) translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) scale(1)";
       thumb.style.zIndex = "1";
       thumb.classList.remove("is-centre");
@@ -536,8 +541,11 @@
   }
   function orbitToRing() {
     orbitMode = "ring";
+    orbitCentre = 0;
     if (orbitStage) orbitStage.classList.remove("is-arc");
     if (orbitBack) orbitBack.hidden = true;
+    if (orbitName) orbitName.textContent = LOOKS[0].name;
+    if (orbitLine) orbitLine.textContent = ORBIT_LINES[0];
     orbitPlaceRing();
   }
   function lookbookOrbit() {
