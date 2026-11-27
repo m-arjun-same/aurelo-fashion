@@ -3,342 +3,573 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AURELO — Wear the Statement | Street Fashion House Since 2019</title>
-<meta name="description" content="AURELO street fashion. Cut bold, sewn honest, worn loud. One look is never enough.">
+<title>AURELO — Wear the Statement | Fashion House Since 2019</title>
+<meta name="description" content="AURELO is a fashion house since 2019. Shop the collection, book a styling appointment, custom tailoring, alterations and made-to-order. Prices on enquiry.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23C9F24E'/%3E%3Cpath d='M4 38 Q32 28 60 38 L60 48 Q32 38 4 48 Z' fill='%234B2E83'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=6">
+<link rel="stylesheet" href="assets/css/style.css?v=7">
 </head>
 <body>
 
-<!-- LOADER : the curtain lift -->
+<a class="skip-link" href="#shop">Skip to the collection</a>
+
+<!-- LOADER : curtain lift, wordmark only -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader-panel loader-panel--left"></div>
   <div class="loader-panel loader-panel--right"></div>
   <div class="loader-core">
-    <img class="loader-crisp" src="assets/images/v5/crisps/cf-1.png" alt="" width="120" height="120">
     <div class="loader-word" aria-hidden="true"><span>A</span><span>U</span><span>R</span><span>E</span><span>L</span><span>O</span></div>
-    <p class="loader-tag">RAISING THE CURTAIN…</p>
+    <p class="loader-tag">WEAR THE STATEMENT</p>
   </div>
 </div>
 
-<header class="site-head">
+<header class="site-head" id="siteHead">
   <a class="logo-badge" href="#top" aria-label="AURELO — back to top">
     <span class="logo-disc">AURELO</span>
   </a>
   <nav class="site-nav" aria-label="Sections">
-    <a href="#numbers">Since 2019</a>
-    <a href="#flavours">Collections</a>
-    <a href="#journey">Journey</a>
-    <a href="#moments">Scenes</a>
+    <a href="#shop">Shop</a>
+    <a href="#lookbook">Collections</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
   </nav>
+  <div class="head-actions">
+    <a class="btn btn--lime btn--sm" href="#contact">Book Styling</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile overlay menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile sections">
+    <a href="#shop">Shop</a>
+    <a href="#lookbook">Collections</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn--lime" href="#contact">Book a Styling Appointment</a>
+  <p class="mobile-menu-note">Cut bold. Sewn honest. Worn loud.</p>
+</div>
 
 <main id="top">
 
-  <!-- 1 · HERO -->
+  <!-- 1 · HERO — hero-1 adaptation: split word with a photo wedged inside it -->
   <section class="hero" id="hero">
     <div class="hero-sun" aria-hidden="true"></div>
-    <canvas class="hero-canvas" id="crispCanvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
-      <p class="hero-kicker"><span class="chip-tag">STREET FASHION</span><span class="chip-tag chip-tag--ink">SINCE 2019</span></p>
+      <p class="hero-kicker"><span class="chip-tag">FASHION HOUSE</span><span class="chip-tag chip-tag--ink">SINCE 2019</span></p>
       <h1 class="hero-title">
-        <span class="ht-line"><span class="ht-inner">WEAR</span></span>
-        <span class="ht-line ht-line--sm"><span class="ht-inner">THE <em>STATEMENT</em></span></span>
-        <span class="ht-line"><span class="ht-inner ht-inner--outline">SEEN</span></span>
-        <span class="ht-line"><span class="ht-inner">EVERYWHERE</span></span>
+        <span class="ht-line"><span class="ht-inner hero-word"><span>AUR</span><span class="hero-wedge"><img src="assets/images/v5/night-look.jpg" alt="A bold AURELO editorial look"></span><span>ELO</span></span></span>
+        <span class="ht-line ht-line--sm"><span class="ht-inner">WEAR THE <em>STATEMENT</em></span></span>
       </h1>
-      <p class="hero-sub">Cut bold. Sewn honest. Worn loud.<br>One entrance and the whole street turns.</p>
-    </div>
-    <div class="hero-ribbon" aria-hidden="true">
-      <div class="hero-ribbon-track">
-        <span>ONE LOOK IS NEVER ENOUGH</span><span class="ribbon-star">★</span>
-        <span>ONE LOOK IS NEVER ENOUGH</span><span class="ribbon-star">★</span>
-        <span>ONE LOOK IS NEVER ENOUGH</span><span class="ribbon-star">★</span>
+      <p class="hero-sub">Cut bold. Sewn honest. Worn loud.</p>
+      <div class="hero-ctas">
+        <a class="btn btn--lime" href="#shop">Shop the Collection</a>
+        <a class="btn btn--ghost" href="#contact">Book a Styling Appointment</a>
       </div>
+      <dl class="hero-stats">
+        <div class="hero-stat">
+          <dt>Since</dt>
+          <dd><span>2019</span></dd>
+        </div>
+        <div class="hero-stat">
+          <dt>Cities</dt>
+          <dd><span data-count="25">25</span><span class="stat-plus">+</span></dd>
+        </div>
+        <div class="hero-stat">
+          <dt>Collections</dt>
+          <dd><span data-count="8">8</span></dd>
+        </div>
+      </dl>
     </div>
-    <p class="hero-scroll">SCROLL FOR THE DROP <span aria-hidden="true">↓</span></p>
+    <p class="hero-scroll">SCROLL <span aria-hidden="true">↓</span></p>
   </section>
 
-  <!-- 2 · NUMBERS -->
-  <section class="numbers" id="numbers">
-    <div class="numbers-ghost" aria-hidden="true">2019 · 2019 · 2019</div>
+  <!-- Ribbon -->
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon-track">
+      <span>ONE LOOK IS NEVER ENOUGH</span><span class="ribbon-star">★</span>
+      <span>CUT BOLD · SEWN HONEST · WORN LOUD</span><span class="ribbon-star">★</span>
+      <span>ONE LOOK IS NEVER ENOUGH</span><span class="ribbon-star">★</span>
+      <span>CUT BOLD · SEWN HONEST · WORN LOUD</span><span class="ribbon-star">★</span>
+    </div>
+  </div>
+
+  <!-- 2 · SHOP THE COLLECTION — grid-1 adaptation: editorial fashion grid -->
+  <section class="shop" id="shop">
     <div class="wrap">
-      <p class="sec-label">THE SCOREBOARD</p>
+      <div class="sec-head">
+        <div>
+          <p class="sec-label">THE COLLECTION</p>
+          <h2 class="sec-title">
+            <span class="ht-line"><span class="ht-inner" data-reveal>SHOP THE</span></span>
+            <span class="ht-line"><span class="ht-inner ht-inner--violet" data-reveal>COLLECTION</span></span>
+          </h2>
+        </div>
+        <p class="sec-note">Eight looks. Prices on enquiry — every piece is made to order. Enquire about a look and the atelier confirms size, fit and lead time.</p>
+      </div>
+
+      <div class="shop-grid">
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/picnic.jpg" alt="Ivory Tailoring look" loading="lazy"><span class="look-num">01</span></div>
+          <div class="look-body">
+            <h3>Ivory Tailoring</h3>
+            <p class="look-line">Sharp shoulders, clean lines. The original silhouette — unchanged since 2019.</p>
+            <p class="look-meta">Wool-blend suiting · Regular fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Ivory Tailoring">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/night-look.jpg" alt="Violet Riot look" loading="lazy"><span class="look-num">02</span></div>
+          <div class="look-body">
+            <h3>Violet Riot</h3>
+            <p class="look-line">Deep violet layers with a rebellious cut. The house favourite after dark.</p>
+            <p class="look-meta">Layered violet · Relaxed fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Violet Riot">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/movie-night.jpg" alt="Pink Static look" loading="lazy"><span class="look-num">03</span></div>
+          <div class="look-body">
+            <h3>Pink Static</h3>
+            <p class="look-line">Electric pink with a signal-noise edge. It hums before you speak.</p>
+            <p class="look-meta">Electric pink · Statement fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Pink Static">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/gameday.jpg" alt="Lime Circuit look" loading="lazy"><span class="look-num">04</span></div>
+          <div class="look-body">
+            <h3>Lime Circuit</h3>
+            <p class="look-line">Acid lime wired through black denim. Bright, then brighter.</p>
+            <p class="look-meta">Acid lime on black denim · Straight fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Lime Circuit">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/road-trip.jpg" alt="Midnight Denim look" loading="lazy"><span class="look-num">05</span></div>
+          <div class="look-body">
+            <h3>Midnight Denim</h3>
+            <p class="look-line">Indigo cut for the night shift. A classic that bites back.</p>
+            <p class="look-meta">Indigo denim · Straight fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Midnight Denim">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/field.jpg" alt="Lavender Haze look" loading="lazy"><span class="look-num">06</span></div>
+          <div class="look-body">
+            <h3>Lavender Haze</h3>
+            <p class="look-line">Soft lavender drift over a hard street base.</p>
+            <p class="look-meta">Soft lavender layers · Relaxed fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Lavender Haze">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/street-worn.jpg" alt="Noir Armour look" loading="lazy"><span class="look-num">07</span></div>
+          <div class="look-body">
+            <h3>Noir Armour</h3>
+            <p class="look-line">All black, structured like armour — straight off the runway, no permission needed.</p>
+            <p class="look-meta">Structured black · Regular fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Noir Armour">Enquire</button>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-media"><img src="assets/images/v5/balloons.jpg" alt="Acid Bloom look" loading="lazy"><span class="look-num">08</span></div>
+          <div class="look-body">
+            <h3>Acid Bloom</h3>
+            <p class="look-line">Lime florals over violet shadow. Wakes the whole street up.</p>
+            <p class="look-meta">Lime floral over violet · Relaxed fit</p>
+            <p class="look-sizes">Sizes <span>XS – XL</span></p>
+            <button class="btn btn--ink look-enquire" type="button" data-look="Acid Bloom">Enquire</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · ABOUT THE HOUSE -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <p class="sec-label sec-label--yellow">ABOUT THE HOUSE</p>
+        <h2 class="sec-title sec-title--cream">
+          <span class="ht-line"><span class="ht-inner" data-reveal>NEVER</span></span>
+          <span class="ht-line"><span class="ht-inner ht-inner--yellow" data-reveal>BLEND IN.</span></span>
+        </h2>
+        <p class="about-text">AURELO started in 2019 as a two-rail studio label with one rule: never blend in. The statement did the rest — today the look is worn in more than 25 cities.</p>
+        <p class="about-text">Every piece is cut in the atelier, sewn seam by seam, and finished to be worn loud. One look is never enough — so we make each one count.</p>
+        <ul class="values">
+          <li><strong>Cut sharp.</strong> The silhouette comes first, always.</li>
+          <li><strong>Sewn honest.</strong> Seams that hold, finishes that last.</li>
+          <li><strong>Finished bold.</strong> Colour and cut with no apology.</li>
+        </ul>
+      </div>
+      <figure class="about-media">
+        <img src="assets/images/v5/studio-stitch.jpg" alt="Inside the AURELO atelier, garments in progress" loading="lazy">
+        <video src="assets/video/card-product.mp4" poster="assets/video/card-product.jpg" autoplay muted loop playsinline aria-label="An AURELO editorial look"></video>
+        <figcaption>The atelier floor — where every look is cut, stitched and finished.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4 · SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <p class="sec-label">WHAT WE DO</p>
       <h2 class="sec-title">
-        <span class="ht-line"><span class="ht-inner" data-reveal>ONE SILHOUETTE.</span></span>
-        <span class="ht-line"><span class="ht-inner" data-reveal>COUNTED EVERYWHERE.</span></span>
+        <span class="ht-line"><span class="ht-inner" data-reveal>SERVICES, DONE</span></span>
+        <span class="ht-line"><span class="ht-inner ht-inner--violet" data-reveal>PROPERLY.</span></span>
       </h2>
-      <div class="stat-grid">
-        <div class="stat">
-          <p class="stat-num"><span data-count="2019">0</span></p>
-          <p class="stat-cap">THE YEAR AURELO OPENED ITS FIRST TWO-RAIL STUDIO</p>
-        </div>
-        <div class="stat">
-          <p class="stat-num"><span data-count="25">0</span><span class="stat-plus">+</span></p>
-          <p class="stat-cap">CITIES WHERE THE LOOK GETS WORN OUT AT NIGHT</p>
-        </div>
-        <div class="stat">
-          <p class="stat-num"><span data-count="8">0</span></p>
-          <p class="stat-cap">COLLECTIONS ON THIS PAGE. PICKING ONE IS HARD</p>
-        </div>
-        <div class="stat stat--red">
-          <p class="stat-num"><span data-count="1">0</span></p>
-          <p class="stat-cap">STATEMENT IS ALL IT TAKES. ONE LOOK IS NEVER ENOUGH</p>
-        </div>
+      <div class="service-grid">
+        <article class="service-card">
+          <p class="service-num">01</p>
+          <h3>Custom Tailoring</h3>
+          <p>A look cut for one person only — you. Consultation, fabric and fit choices, and fittings until it sits right.</p>
+          <p class="service-book">How to book: enquire via the form and choose <strong>Custom Tailoring</strong>.</p>
+          <button class="btn btn--ink service-enquire" type="button" data-look="Custom Tailoring">Enquire</button>
+        </article>
+        <article class="service-card">
+          <p class="service-num">02</p>
+          <h3>Styling Appointments</h3>
+          <p>A one-to-one styling session. Looks pulled for you, honest advice on fit, and a full outfit built around the statement.</p>
+          <p class="service-book">How to book: enquire via the form and choose <strong>Styling Appointment</strong>.</p>
+          <button class="btn btn--ink service-enquire" type="button" data-look="Styling Appointment">Enquire</button>
+        </article>
+        <article class="service-card">
+          <p class="service-num">03</p>
+          <h3>Alterations &amp; Repairs</h3>
+          <p>Hems, seams, fit adjustments and repairs on AURELO pieces — so a look you love keeps fitting the way it should.</p>
+          <p class="service-book">How to book: enquire via the form and choose <strong>Alterations &amp; Repairs</strong>.</p>
+          <button class="btn btn--ink service-enquire" type="button" data-look="Alterations &amp; Repairs">Enquire</button>
+        </article>
+        <article class="service-card">
+          <p class="service-num">04</p>
+          <h3>Made-to-Order</h3>
+          <p>A look from the collection, made for you. Size and fit are confirmed first, and the lead time is confirmed at enquiry.</p>
+          <p class="service-book">How to book: enquire about any look, or choose <strong>Made-to-Order</strong> in the form.</p>
+          <button class="btn btn--ink service-enquire" type="button" data-look="Made-to-Order">Enquire</button>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 3 · COLLECTIONS -->
-  <section class="flavours" id="flavours">
-    <div class="flavours-head wrap">
-      <p class="sec-label sec-label--yellow">THE LINE-UP</p>
+  <!-- 5 · PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <p class="sec-label sec-label--yellow">HOW IT WORKS</p>
       <h2 class="sec-title sec-title--cream">
-        <span class="ht-line"><span class="ht-inner" data-reveal>PICK YOUR</span></span>
-        <span class="ht-line"><span class="ht-inner ht-inner--yellow" data-reveal>STATEMENT</span></span>
+        <span class="ht-line"><span class="ht-inner" data-reveal>ATELIER TO</span></span>
+        <span class="ht-line"><span class="ht-inner ht-inner--yellow" data-reveal>WORN.</span></span>
       </h2>
-      <p class="flavours-hint">EIGHT COLLECTIONS. ZERO WRONG ANSWERS. <span class="hint-arrow" aria-hidden="true">→</span></p>
+      <ol class="process-steps">
+        <li class="process-step">
+          <img src="assets/images/v5/field.jpg" alt="The atelier, where every look begins" loading="lazy">
+          <div class="process-body">
+            <p class="process-count">STEP 01 / 04 — ATELIER</p>
+            <h3>Consultation</h3>
+            <p>It starts on the sketch table and in conversation — the look, the fit, the occasion. Every silhouette is drawn for one thing: presence.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <img src="assets/images/v5/rail-cut.jpg" alt="Rails of garments ready for cutting" loading="lazy">
+          <div class="process-body">
+            <p class="process-count">STEP 02 / 04 — CUT</p>
+            <h3>Fitting</h3>
+            <p>Every panel is cut sharp, then fitted on you. Sharp is where the statement lives — and the fit is checked before a single seam is sewn.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <img src="assets/images/v5/studio-stitch.jpg" alt="The studio floor, pieces being stitched" loading="lazy">
+          <div class="process-body">
+            <p class="process-count">STEP 03 / 04 — STITCH</p>
+            <h3>Making</h3>
+            <p>Sewn seam by seam in the atelier until it holds. Not loose, not lazy — held. The lead time is confirmed at enquiry, before you commit.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <img src="assets/images/v5/street-worn.jpg" alt="An AURELO look worn on the street" loading="lazy">
+          <div class="process-body">
+            <p class="process-count">STEP 04 / 04 — WORN</p>
+            <h3>Delivery</h3>
+            <p>Finished on the street, so the statement rides every single step. Your look is handed over ready to wear — worn loud.</p>
+          </div>
+        </li>
+      </ol>
     </div>
-    <div class="runway" id="runway">
-      <div class="runway-track" id="runwayTrack">
+  </section>
 
-        <article class="panel panel--cream">
-          <p class="panel-num">01</p>
-          <div class="panel-body">
-            <h3 class="panel-name">IVORY<br>TAILORING</h3>
-            <p class="panel-line">Sharp shoulders, clean lines. The original silhouette — unchanged since 2019.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-1.png" alt="An ivory tailored look" loading="lazy">
+  <!-- 6 · LOOKBOOK — sliders-1 adaptation: horizontal filmstrip slider -->
+  <section class="lookbook" id="lookbook">
+    <div class="wrap lookbook-head">
+      <div>
+        <p class="sec-label sec-label--yellow">THE LOOKBOOK</p>
+        <h2 class="sec-title sec-title--cream">
+          <span class="ht-line"><span class="ht-inner" data-reveal>EVERY STREET</span></span>
+          <span class="ht-line"><span class="ht-inner ht-inner--yellow" data-reveal>HAS A STATEMENT</span></span>
+        </h2>
+      </div>
+      <div class="slider-controls">
+        <p class="slider-count"><span id="slideNow">1</span> / <span id="slideTotal">6</span></p>
+        <button class="slider-arrow" id="slidePrev" type="button" aria-label="Previous look">←</button>
+        <button class="slider-arrow" id="slideNext" type="button" aria-label="Next look">→</button>
+      </div>
+    </div>
+    <div class="slider" id="slider" tabindex="0" role="region" aria-label="Lookbook slider — drag, use the arrows, or press the left and right keys">
+      <div class="slider-track" id="sliderTrack">
+        <article class="slide">
+          <img src="assets/images/v5/movie-night.jpg" alt="Runway Night look under evening lights" loading="lazy" draggable="false">
+          <div class="slide-shade"></div>
+          <div class="slide-content"><h3>Runway Night</h3><p>Lights down. Cameras up. Entrance made before the show starts.</p></div>
         </article>
-
-        <article class="panel panel--red">
-          <p class="panel-num">02</p>
-          <div class="panel-body">
-            <h3 class="panel-name">VIOLET<br>RIOT</h3>
-            <p class="panel-line">Deep violet layers with a rebellious cut. The house favourite after dark.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-2.png" alt="A violet layered look" loading="lazy">
+        <article class="slide">
+          <img src="assets/images/v5/gameday.jpg" alt="City Festival look in full colour" loading="lazy" draggable="false">
+          <div class="slide-shade"></div>
+          <div class="slide-content"><h3>City Festival</h3><p>All day outside. One look per set. Nobody blends in by the finale.</p></div>
         </article>
-
-        <article class="panel panel--orange">
-          <p class="panel-num">03</p>
-          <div class="panel-body">
-            <h3 class="panel-name">PINK<br>STATIC</h3>
-            <p class="panel-line">Electric pink with a signal-noise edge. It hums before you speak.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-3.png" alt="A pink statement look" loading="lazy">
+        <article class="slide">
+          <img src="assets/images/v5/picnic.jpg" alt="Gallery Opening look at golden hour" loading="lazy" draggable="false">
+          <div class="slide-shade"></div>
+          <div class="slide-content"><h3>Gallery Opening</h3><p>Golden hour, doors open, the look in the middle of everything.</p></div>
         </article>
-
-        <article class="panel panel--yellow">
-          <p class="panel-num">04</p>
-          <div class="panel-body">
-            <h3 class="panel-name">LIME<br>CIRCUIT</h3>
-            <p class="panel-line">Acid lime wired through black denim. Bright, then brighter.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-5.png" alt="A lime-accented look" loading="lazy">
+        <article class="slide">
+          <img src="assets/images/v5/road-trip.jpg" alt="Road Style look in bold colour-block" loading="lazy" draggable="false">
+          <div class="slide-shade"></div>
+          <div class="slide-content"><h3>Road Style</h3><p>Front seat sets the dress code. House rule since the first mile.</p></div>
         </article>
-
-        <article class="panel panel--deepred">
-          <p class="panel-num">05</p>
-          <div class="panel-body">
-            <h3 class="panel-name">MIDNIGHT<br>DENIM</h3>
-            <p class="panel-line">Indigo cut for the night shift. A classic that bites back.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-4.png" alt="A midnight denim look" loading="lazy">
+        <article class="slide">
+          <img src="assets/images/v5/balloons.jpg" alt="Launch Party look on launch day" loading="lazy" draggable="false">
+          <div class="slide-shade"></div>
+          <div class="slide-content"><h3>Launch Party</h3><p>The rail empties first. It always empties first.</p></div>
         </article>
-
-        <article class="panel panel--amber">
-          <p class="panel-num">06</p>
-          <div class="panel-body">
-            <h3 class="panel-name">LAVENDER<br>HAZE</h3>
-            <p class="panel-line">Soft lavender drift over a hard street base.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-1.png" alt="A lavender layered look" loading="lazy">
+        <article class="slide">
+          <img src="assets/images/v5/night-look.jpg" alt="Night Out look, bold pink editorial" loading="lazy" draggable="false">
+          <div class="slide-shade"></div>
+          <div class="slide-content"><h3>Night Out</h3><p>City, lights, silence — broken only by the entrance.</p></div>
         </article>
+      </div>
+    </div>
+    <div class="wrap slider-dots" id="sliderDots" role="tablist" aria-label="Choose a look"></div>
+    <p class="wrap slider-hint">Drag the lookbook, use the arrows, or press ← → on your keyboard.</p>
+  </section>
 
-        <article class="panel panel--ink">
-          <p class="panel-num">07</p>
-          <div class="panel-body">
-            <h3 class="panel-name">NOIR<br>ARMOUR</h3>
-            <p class="panel-line">All black, structured like armour — straight off the runway, no permission needed.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-2.png" alt="An all-black structured look" loading="lazy">
-        </article>
-
-        <article class="panel panel--gold">
-          <p class="panel-num">08</p>
-          <div class="panel-body">
-            <h3 class="panel-name">ACID<br>BLOOM</h3>
-            <p class="panel-line">Lime florals over violet shadow. Wakes the whole street up.</p>
-          </div>
-          <img class="panel-crisp" src="assets/images/v5/crisps/cf-3.png" alt="An acid floral look" loading="lazy">
-        </article>
-
+  <!-- 7 · SIZE & FIT + ORDERING, SHIPPING & RETURNS -->
+  <section class="info" id="size">
+    <div class="wrap">
+      <p class="sec-label">BEFORE YOU ENQUIRE</p>
+      <h2 class="sec-title">
+        <span class="ht-line"><span class="ht-inner" data-reveal>SIZE &amp; FIT.</span></span>
+        <span class="ht-line"><span class="ht-inner ht-inner--violet" data-reveal>NO GUESSING.</span></span>
+      </h2>
+      <div class="info-grid">
+        <div class="size-block">
+          <h3>Size guide</h3>
+          <p>Every look comes in sizes XS–XL. The fit note tells you how each size sits — if you are between sizes, say so in your enquiry and the atelier will advise.</p>
+          <table class="size-table">
+            <thead>
+              <tr><th scope="col">Size</th><th scope="col">Fit</th><th scope="col">Best for</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">XS</th><td>Close fit — cut sharp through the shoulder</td><td>Tailored looks</td></tr>
+              <tr><th scope="row">S</th><td>Regular fit — the house cut</td><td>Most looks</td></tr>
+              <tr><th scope="row">M</th><td>Regular fit — room to layer underneath</td><td>Layered looks</td></tr>
+              <tr><th scope="row">L</th><td>Relaxed fit — sits easy on the body</td><td>Denim and outer layers</td></tr>
+              <tr><th scope="row">XL</th><td>Relaxed fit — full statement volume</td><td>Oversized looks</td></tr>
+            </tbody>
+          </table>
+          <p class="size-note">Between sizes, or want a look adjusted? Alterations are part of the service — mention it in your enquiry.</p>
+        </div>
+        <div class="policy-block">
+          <h3>Ordering, shipping &amp; returns</h3>
+          <article class="policy">
+            <h4>Ordering</h4>
+            <p>Every piece is made to order. Enquire about a look, confirm your size and fit, and the atelier confirms your order. Prices on enquiry.</p>
+          </article>
+          <article class="policy">
+            <h4>Shipping &amp; delivery</h4>
+            <p>Delivery is arranged at enquiry. The lead time is confirmed before you commit, so you always know where your look stands.</p>
+          </article>
+          <article class="policy">
+            <h4>Returns</h4>
+            <p>Returns are accepted on unworn pieces. Enquire first if you are unsure about fit — the atelier would rather get it right than take it back.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 4 · JOURNEY -->
-  <section class="journey" id="journey">
-    <div class="journey-pin" id="journeyPin">
-
-      <article class="step is-active">
-        <img class="step-img" src="assets/images/v5/field.jpg" alt="Inside the AURELO atelier, garments in progress">
-        <div class="step-shade"></div>
-        <div class="step-content">
-          <p class="step-count">STEP 01 / 04</p>
-          <h3 class="step-word">ATELIER</h3>
-          <p class="step-line">It starts on the sketch table — every silhouette drawn for one thing: presence.</p>
-        </div>
-      </article>
-
-      <article class="step">
-        <img class="step-img" src="assets/images/v5/rail-cut.jpg" alt="Rails of garments ready for cutting">
-        <div class="step-shade"></div>
-        <div class="step-content">
-          <p class="step-count">STEP 02 / 04</p>
-          <h3 class="step-word">CUT</h3>
-          <p class="step-line">Every panel cut sharp. Sharp is where the statement lives.</p>
-        </div>
-      </article>
-
-      <article class="step">
-        <img class="step-img" src="assets/images/v5/studio-stitch.jpg" alt="The AURELO studio floor, rails of finished pieces">
-        <div class="step-shade"></div>
-        <div class="step-content">
-          <p class="step-count">STEP 03 / 04</p>
-          <h3 class="step-word">STITCH</h3>
-          <p class="step-line">Sewn seam by seam until it holds. Not loose, not lazy — held.</p>
-        </div>
-      </article>
-
-      <article class="step">
-        <img class="step-img" src="assets/images/v5/street-worn.jpg" alt="An AURELO look worn on the street">
-        <div class="step-shade"></div>
-        <div class="step-content">
-          <p class="step-count">STEP 04 / 04</p>
-          <h3 class="step-word">WORN</h3>
-          <p class="step-line">Finished on the street, so the statement rides every single step.</p>
-        </div>
-      </article>
-
-      <div class="journey-progress" aria-hidden="true">
-        <span class="jp-seg is-on"></span><span class="jp-seg"></span><span class="jp-seg"></span><span class="jp-seg"></span>
+  <!-- 8 · FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap faq-grid">
+      <div>
+        <p class="sec-label sec-label--yellow">QUESTIONS</p>
+        <h2 class="sec-title sec-title--cream">
+          <span class="ht-line"><span class="ht-inner" data-reveal>ASKED,</span></span>
+          <span class="ht-line"><span class="ht-inner ht-inner--yellow" data-reveal>ANSWERED.</span></span>
+        </h2>
+        <p class="faq-note">Anything else? Put it in the enquiry form below — the atelier answers every enquiry.</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>How do I order a look?</summary>
+          <p>Choose a look in the collection and press Enquire — the form opens with that look already selected. Send the enquiry and the atelier confirms size, fit and lead time before anything is made.</p>
+        </details>
+        <details>
+          <summary>How does sizing work?</summary>
+          <p>Looks come in XS–XL. Use the size guide above: XS is a close fit, S–M is the regular house cut, L–XL is relaxed. Between sizes? Say so in your enquiry and the atelier will advise.</p>
+        </details>
+        <details>
+          <summary>Can a look be altered?</summary>
+          <p>Yes. Alterations and repairs are one of the house services — hems, seams and fit adjustments on AURELO pieces. Choose Alterations &amp; Repairs in the enquiry form.</p>
+        </details>
+        <details>
+          <summary>What does made-to-order mean?</summary>
+          <p>Your piece is made after you enquire, not pulled from a warehouse shelf. Size and fit are confirmed first, and the lead time is confirmed at enquiry.</p>
+        </details>
+        <details>
+          <summary>How does delivery work?</summary>
+          <p>Delivery is arranged at enquiry, with the lead time confirmed before you commit. There are no surprise steps — you know where your look stands from the start.</p>
+        </details>
+        <details>
+          <summary>What is the returns policy?</summary>
+          <p>Returns are accepted on unworn pieces. If you are unsure about fit, enquire first — the atelier would rather get it right than take it back.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- 5 · SCENES -->
-  <section class="moments" id="moments">
-    <div class="wrap moments-head">
-      <p class="sec-label sec-label--yellow">NO LOOK LEFT BEHIND</p>
-      <h2 class="sec-title sec-title--cream">
-        <span class="ht-line"><span class="ht-inner" data-reveal>EVERY STREET</span></span>
-        <span class="ht-line"><span class="ht-inner ht-inner--yellow" data-reveal>HAS A STATEMENT</span></span>
-      </h2>
-    </div>
-    <div class="moment-stack">
-
-      <article class="moment">
-        <img class="moment-img" src="assets/images/v5/movie-night.jpg" alt="A statement dress under evening lights" loading="lazy">
-        <div class="moment-shade"></div>
-        <div class="moment-content">
-          <h3 class="moment-name">RUNWAY NIGHT</h3>
-          <p class="moment-line">Lights down. Cameras up. Entrance made before the show starts.</p>
-        </div>
-      </article>
-
-      <article class="moment">
-        <img class="moment-img" src="assets/images/v5/gameday.jpg" alt="Bright street style in full colour" loading="lazy">
-        <div class="moment-shade"></div>
-        <div class="moment-content">
-          <h3 class="moment-name">CITY FESTIVAL</h3>
-          <p class="moment-line">All day outside. One look per set. Nobody blends in by the finale.</p>
-        </div>
-      </article>
-
-      <article class="moment">
-        <img class="moment-img" src="assets/images/v5/picnic.jpg" alt="Street style at golden hour" loading="lazy">
-        <div class="moment-shade"></div>
-        <div class="moment-content">
-          <h3 class="moment-name">GALLERY OPENING</h3>
-          <p class="moment-line">Golden hour, doors open, the look in the middle of everything.</p>
-        </div>
-      </article>
-
-      <article class="moment">
-        <img class="moment-img" src="assets/images/v5/road-trip.jpg" alt="Bold colour-block street style" loading="lazy">
-        <div class="moment-shade"></div>
-        <div class="moment-content">
-          <h3 class="moment-name">ROAD STYLE</h3>
-          <p class="moment-line">Front seat sets the dress code. House rule since the first mile.</p>
-        </div>
-      </article>
-
-      <article class="moment">
-        <img class="moment-img moment-img--warm" src="assets/images/v5/balloons.jpg" alt="Shopping bags from a launch day" loading="lazy">
-        <div class="moment-shade"></div>
-        <div class="moment-content">
-          <h3 class="moment-name">LAUNCH PARTY</h3>
-          <p class="moment-line">The rail empties first. It always empties first.</p>
-        </div>
-      </article>
-
-      <article class="moment moment--pattern">
-        <img class="moment-img" src="assets/images/v5/night-look.jpg" alt="A bold pink editorial look" loading="lazy">
-        <div class="moment-shade"></div>
-        <div class="moment-content">
-          <h3 class="moment-name">NIGHT OUT</h3>
-          <p class="moment-line">City, lights, silence — broken only by the entrance.</p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- 6 · FINALE -->
-  <section class="finale" id="finale">
-    <div class="finale-scrub" aria-hidden="true">
-      <p class="finale-scrub-text">ONE LOOK IS NEVER ENOUGH — ONE LOOK IS NEVER ENOUGH —</p>
-    </div>
-    <div class="wrap finale-core">
-      <div class="finale-frame">
-        <video class="finale-video" src="assets/video/card-product.mp4" poster="assets/video/card-product.jpg" autoplay muted loop playsinline aria-label="An AURELO editorial look, slowly zooming"></video>
+  <!-- 9 · CONTACT / BOOK -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <p class="sec-label">ENQUIRE / BOOK</p>
+        <h2 class="sec-title">
+          <span class="ht-line"><span class="ht-inner" data-reveal>BOOK A STYLING</span></span>
+          <span class="ht-line"><span class="ht-inner ht-inner--violet" data-reveal>APPOINTMENT.</span></span>
+        </h2>
+        <p class="contact-text">Enquire about a look, book a styling appointment, or ask about tailoring, alterations and made-to-order. Prices on enquiry.</p>
+        <ol class="next-steps">
+          <li><strong>1 · Enquire.</strong> Tell us the look or service and your size.</li>
+          <li><strong>2 · Confirm.</strong> The atelier confirms fit and lead time.</li>
+          <li><strong>3 · Made &amp; delivered.</strong> Your look is made to order, then delivered.</li>
+        </ol>
       </div>
-      <h2 class="finale-title">
-        <span class="ht-line"><span class="ht-inner" data-reveal>GRAB</span></span>
-        <span class="ht-line"><span class="ht-inner" data-reveal>THE LOOK.</span></span>
-      </h2>
-      <p class="finale-line">You were never going to wear just one.</p>
+      <div class="form-card">
+        <form id="enquiryForm" novalidate>
+          <p class="form-selected" id="formSelected" hidden>Enquiring about: <strong id="formSelectedName"></strong></p>
+          <div class="field">
+            <label for="fName">Your name</label>
+            <input id="fName" name="name" type="text" autocomplete="name" placeholder="Your name">
+            <p class="field-error" id="errName" hidden>Please enter your name.</p>
+          </div>
+          <div class="field">
+            <label for="fEmail">Email</label>
+            <input id="fEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+            <p class="field-error" id="errEmail" hidden>Please enter a valid email address.</p>
+          </div>
+          <div class="field">
+            <label for="fInterest">I am interested in</label>
+            <select id="fInterest" name="interest">
+              <option value="" selected>Choose a look or service…</option>
+              <optgroup label="The Collection">
+                <option>Ivory Tailoring</option>
+                <option>Violet Riot</option>
+                <option>Pink Static</option>
+                <option>Lime Circuit</option>
+                <option>Midnight Denim</option>
+                <option>Lavender Haze</option>
+                <option>Noir Armour</option>
+                <option>Acid Bloom</option>
+              </optgroup>
+              <optgroup label="Services">
+                <option>Custom Tailoring</option>
+                <option>Styling Appointment</option>
+                <option>Alterations &amp; Repairs</option>
+                <option>Made-to-Order</option>
+                <option>General Enquiry</option>
+              </optgroup>
+            </select>
+            <p class="field-error" id="errInterest" hidden>Please choose a look or a service.</p>
+          </div>
+          <div class="field">
+            <label for="fMessage">Message <span class="field-hint">— size, fit, occasion, anything that helps</span></label>
+            <textarea id="fMessage" name="message" rows="4" placeholder="e.g. Violet Riot, size M, for a gallery opening…"></textarea>
+            <p class="field-error" id="errMessage" hidden>Please add a short message — even one line helps.</p>
+          </div>
+          <button class="btn btn--lime btn--block" type="submit">Send Enquiry</button>
+          <p class="form-note">Prices on enquiry. Your enquiry stays with the atelier — nothing here is shared or sold.</p>
+        </form>
+        <div class="form-success" id="formSuccess" hidden>
+          <p class="form-success-mark" aria-hidden="true">✓</p>
+          <h3>Enquiry received.</h3>
+          <p id="formSuccessText">Thank you — the atelier will confirm fit and lead time.</p>
+          <button class="btn btn--ink" id="formAgain" type="button">Send another enquiry</button>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- 7 · FOOTER -->
+<!-- 10 · FOOTER -->
 <footer class="footer">
   <div class="wrap">
     <p class="footer-word" aria-hidden="true">AURELO</p>
     <div class="footer-grid">
       <div class="footer-col">
-        <p class="footer-head">GO</p>
-        <a href="#flavours">Collections</a>
-        <a href="#journey">The Journey</a>
-        <a href="#moments">Scenes</a>
+        <p class="footer-head">EXPLORE</p>
+        <a href="#shop">Shop</a>
+        <a href="#lookbook">Collections</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </div>
       <div class="footer-col">
-        <p class="footer-head">THE SHORT STORY</p>
-        <p class="footer-text">AURELO started in 2019 as a two-rail studio label with one rule: never blend in. The statement did the rest — today the look is worn in more than 25 cities.</p>
+        <p class="footer-head">THE COLLECTION</p>
+        <a href="#shop">Ivory Tailoring</a>
+        <a href="#shop">Violet Riot</a>
+        <a href="#shop">Pink Static</a>
+        <a href="#shop">Lime Circuit</a>
+        <a href="#shop">Midnight Denim</a>
+        <a href="#shop">Lavender Haze</a>
+        <a href="#shop">Noir Armour</a>
+        <a href="#shop">Acid Bloom</a>
       </div>
       <div class="footer-col">
-        <p class="footer-head">THE PROMISE</p>
-        <p class="footer-text">Cut sharp. Sewn honest. Finished bold. Worn loud. One look is never enough.</p>
+        <p class="footer-head">SERVICES</p>
+        <a href="#services">Custom Tailoring</a>
+        <a href="#services">Styling Appointments</a>
+        <a href="#services">Alterations &amp; Repairs</a>
+        <a href="#services">Made-to-Order</a>
+        <p class="footer-text">Cut bold. Sewn honest. Worn loud. One look is never enough.</p>
       </div>
     </div>
     <div class="footer-base">
-      <p class="footer-small">Concept experience made for the love of the statement. AURELO is an imagined fashion house created for this page; it is not a real brand and is not affiliated with any real label.</p>
+      <p class="footer-small">© 2026 AURELO. Fashion house since 2019. Prices on enquiry.</p>
       <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
     </div>
   </div>
@@ -347,6 +578,6 @@
 <script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-<script src="assets/js/main.js?v=6"></script>
+<script src="assets/js/main.js?v=7"></script>
 </body>
 </html>
